@@ -1,0 +1,60 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#funny
+fortune
+
+# search and play youtube video
+function yt() {  
+    mpv ytdl://ytsearch:"$*"	
+}
+
+# search and download only audio stream, doesn't work on livestreams
+function ytm() {
+    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch:"$*"  
+}
+
+#play only audio, but both audio and video get downloaded
+function ytr() {
+    mpv --no-video ytdl://ytsearch:"$*"		
+}
+
+alias ls='ls --color=auto'
+
+alias pvpnc='sudo protonvpn c -f'
+alias pvpnd='sudo protonvpn d'
+alias pvpns='protonvpn status'
+
+# start sway with logging
+alias sway='sway -d 2> ~/sway.log' 
+
+# firefox temp profile for shitty government websites
+alias firefox-throwaway='firefox -no-remote -profile $(mktemp -d)'
+
+# line numbering with less, why isn't it default?
+alias less='less -N'
+
+export BROWSER=tor-browser
+export XDG_CURRENT_DESKTOP=sway
+export EDITOR=nvim 
+
+# uniform look and feel of qt apps
+export QT_QPA_PLATFORMTHEME=qt5ct 
+
+# log history across multiple terminal instances without having to exit
+export PROMPT_COMMAND='history -a;history -c;history -r' 
+
+COLOR_PROMPT_FULL="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+COLOR_PROMPT_MINIMAL="\[\033[01;32m\]\w\[\033[00m\]\] $ "
+
+PS1=$COLOR_PROMPT_MINIMAL
+
+# sway automatically on tty1 login
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway
+fi
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
