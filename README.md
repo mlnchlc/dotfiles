@@ -1,1 +1,1 @@
-My GNU/Linux rice
+My SwayWM rice
