@@ -5,8 +5,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#funny
+# start sway automatically on tty1 login
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway -d 2> ~/sway.log
+fi
+
+# funny
 fortune
+
+# prompt
+COLOR_PROMPT_FULL="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+COLOR_PROMPT_MINIMAL="\[\033[01;32m\]\w\[\033[00m\]\] $ "
+PS1=$COLOR_PROMPT_MINIMAL
 
 # search and play youtube video
 function yt() {  
@@ -38,6 +48,9 @@ alias firefox-throwaway='firefox -no-remote -profile $(mktemp -d)'
 # line numbering with less, why isn't it default?
 alias less='less -N'
 
+#dotfile management using git bare repo
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+
 export BROWSER=tor-browser
 export XDG_CURRENT_DESKTOP=sway
 export EDITOR=nvim 
@@ -48,13 +61,4 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # log history across multiple terminal instances without having to exit
 export PROMPT_COMMAND='history -a;history -c;history -r' 
 
-COLOR_PROMPT_FULL="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-COLOR_PROMPT_MINIMAL="\[\033[01;32m\]\w\[\033[00m\]\] $ "
 
-PS1=$COLOR_PROMPT_MINIMAL
-
-# sway automatically on tty1 login
-if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-  exec sway
-fi
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
