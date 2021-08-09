@@ -1,0 +1,10 @@
+configuration {
+ modi: "drun,run";
+ terminal: "alacritty";
+ theme: "gruvbox-dark";
+ font: "FiraMono 10";
+ combi-modi: "drun,ssh";
+ icon-theme: "Gruvbox-Material-Dark";
+ show-icons: true;
+
+ }

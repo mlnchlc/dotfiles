@@ -1,0 +1,168 @@
+// -*- mode: json -*-
+{
+	"layer": "bottom",
+	"position": "bottom",
+	"margin-top": "0px",
+	"margin-right": "0px",
+	"margin-left": "0px",
+	"margin-bottom":"0px",
+	
+	"modules-center": [
+		"sway/workspaces",
+		
+	],
+
+	"modules-left": [
+		"custom/menu",
+		"wlr/taskbar",
+		"sway/mode"
+	],
+
+	"modules-right": [
+		"tray",
+		"clock",
+		"idle_inhibitor",
+		"network",
+		"pulseaudio",
+		"backlight",
+		"cpu",		
+		"memory",
+		"temperature",
+		"battery",
+	],
+
+	"sway/workspaces": {
+		"disable-scroll": false,
+ 		"all-outputs": false,
+ 		"format": "{icon}",
+		"format-default": "{name}",
+		"format-icons": {
+			"default": ""
+		}
+	},
+
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		},
+	},
+
+	"wlr/taskbar": {
+		"all-outputs": false,
+		"format": "{icon}",
+		"icon-theme": "Gruvbox-Material-Dark",
+		"icon-size": "16px",
+		"on-click": "activate",
+		"on-click-right": "minimize",
+		"on-click-middle": "close"
+	},
+
+	"backlight": {
+		"format": "{icon}{percent}%",
+		"format-icons": ["", ""],
+		"on-scroll-up": "brightnessctl -d amdgpu_bl0 s +1%",
+		"on-scroll-down": "brightnessctl -d amdgpu_bl0 s 1%-",
+		
+	},
+
+	"sway/mode": {
+		"format": "{}",
+	},
+
+	"tray": {
+		"icon-size": "12px",
+		"spacing":"10px"
+	},
+
+	"sway/window": {
+        	"format": "{}",
+        	"max-length": "60px",
+        	"tooltip": false
+    	},
+
+	"network": {
+		// "interface": "wlp2s0", // (Optional) To force the use of this interface
+        	"format-wifi": "",
+        	"format-ethernet": "",
+        	"format-disconnected": "ﲁ", //An empty format will hide the module.
+        	"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    	},
+
+	"clock": {
+        	"format": "{:%A, %F, %H:%M}",
+        	"tooltip": false
+	},
+
+	"pulseaudio": {
+		"format": "{icon}{volume}% {format_source}",
+		"format-bluetooth": "{icon}{volume}% {format_source}",
+		"format-bluetooth-muted": "{icon} {format_source}",
+		"format-muted": " {format_source}",
+		"format-source": "{volume}%",
+		"format-source-muted": "",
+
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": [
+				"",
+				"",
+				""
+			]
+		},
+		"on-click": "pavucontrol",
+		"on-scroll-up": "pamixer -i 2",
+		"on-scroll-down": "pamixer -d 2",
+		"on-click-middle": "pamixer -t",
+		"on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+		"tooltip": false
+	},
+
+	"memory": {
+		"states": {
+			"good": 0,
+			"warning": 60,
+			"critical": 80
+		},
+		"interval": 5,
+		"format": "{}% "
+	},
+	
+	"cpu": {
+    		"interval": 10,
+    		"format": "{usage}%",
+	},
+	"battery": {
+    		//"bat": "BAT2",
+    		"interval": 60,
+    		"states": {
+        		"warning": 30,
+        		"critical": 15
+    		},
+    		"format": "{icon}{capacity}%",
+    		"format-icons": ["", "", "", "", ""],
+	},
+	
+	"temperature": {
+		"thermal-zone": 2,
+		"hwmon-path": "/sys/class/hwmon/hwmon2/temp2_input",
+		"critical-threshold": 80,
+		"format": "{temperatureC}°C"
+	},
+	"custom/shutdown": {
+		"format": "",
+		"on-click": "swaynag --background 282828 --border-bottom 3e6656 --border 3e6656 --button-background 282828 --button-border-size 0 --details-background 3e6656 --message \"power options\" -z poweroff poweroff -z sleep \"systemctl suspend;swaylock -f\" -z reboot reboot",
+		"tooltip": false
+	},
+	"custom/menu": {
+		"format": "",
+		"on-click": "wofi --show drun",
+		"tooltip": false
+	},
+}

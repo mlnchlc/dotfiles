@@ -1,0 +1,74 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Fira Mono; 
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(28, 28, 28, 0);
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    color: #ebdbb2;
+}
+
+#workspaces button {
+    padding: 0 0;
+    color: #504945;
+}
+
+#workspaces button.focused {
+    color:#ebdbb2;
+}
+#taskbar button.active{
+    	border-style: dashed;
+	border-bottom: 2px solid;
+	border-radius: 3px;
+	border-width: 2px 0 0 0;
+	border-color: #ebdbb2;
+}
+
+#mode, #clock, #battery, #tray, #idle_inhibitor, #network, #pulseaudio, #backlight, #cpu, #memory, #temperature, #battery, #custom-shutdown, #custom-menu, #taskbar
+{
+    padding: 0 3px;
+    margin: 0 3px;
+}
+
+#mode {
+	color: #fb4934;
+}
+
+#clock {
+	color: #458588;
+}
+
+#battery{
+    color: #98971a;
+}
+
+#cpu, #memory, #backlight, #temperature{
+	color: #b16286;
+}
+
+#idle_inhibitor, #network, #pulseaudio, #tray{
+	color: #689d6a;
+}
+#custom-shutdown{
+	color: orange;
+}
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#battery.warning:not(.charging) {
+    color: #cc241d;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
