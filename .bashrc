@@ -5,17 +5,17 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# funny
+fortune
+
 # start sway automatically on tty1 login
 if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
   exec sway -d 2> ~/sway.log
 fi
 
-# funny
-fortune
-
 # prompt
 COLOR_PROMPT_FULL="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-COLOR_PROMPT_MINIMAL="\[\033[01;32m\]\w\[\033[00m\]\] $ "
+COLOR_PROMPT_MINIMAL="\[\033[01;32m\]\w\[\033[00m\]\$ "
 PS1=$COLOR_PROMPT_MINIMAL
 
 # search and play youtube video
