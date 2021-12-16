@@ -1,10 +1,8 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
+# Modified default config for sway
 #
 # Read `man 5 sway` for a complete reference.
 
-#xwayland disable
+# xwayland disable
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -63,6 +61,11 @@ output "*" bg ~/.config/sway/dark_girl_bg.png fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+#
+#Clamshell mode
+    set $laptop eDP-1
+    bindswitch --reload --locked lid:on output $laptop disable
+    bindswitch --reload --locked lid:off output $laptop enable
 
 ### Key bindings
 #
@@ -88,8 +91,8 @@ output "*" bg ~/.config/sway/dark_girl_bg.png fill
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e 		exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-    
+    #bindsym $mod+Shift+e 		exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e		exec swaymsg exit
     bindsym Shift+Print			exec grim -c -s 2 -g "$(slurp)" ~/Pictures/$(date +"%Y-%m-%d-%H-%M-%S")-grim.png
     bindsym Print 			exec grim -c -s 2 ~/Pictures/$(date +"%Y-%m-%d-%H-%M-%S")-grim.png
     bindsym XF86AudioRaiseVolume 	exec --no-startup-id pamixer -i 5
@@ -105,7 +108,7 @@ output "*" bg ~/.config/sway/dark_girl_bg.png fill
     bindsym $mod+Escape			exec swaylock
     bindsym $mod+t			exec $term -e htop
     bindsym $mod+z			exec zathura
-    bindsym $mod+i			exec firefox
+    bindsym $mod+i			exec qutebrowser 
 #
 # Moving around:
 #
@@ -225,24 +228,25 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    mode hide
+    #mode hide
     font pango:FiraMono Medium 13
-    position bottom
+    position top
     workspace_buttons yes
     tray_output *
     status_padding 2
     status_edge_padding 2
-    strip_workspace_numbers yes
-    strip_workspace_name yes
-    gaps 4
+    strip_workspace_numbers no
+    #strip_workspace_name yes
+    gaps 0
+    icon_theme Papirus-Dark
     status_command /usr/bin/i3status-rs 
     colors {
         separator #ebdbb2
-        background #ebdbb2
+        background #282828
         statusline #ebdbb2
-        inactive_workspace #ebdbb2 #ebdbb2 #282828
+        focused_workspace #ebdbb2 #ebdbb2 #282828
         active_workspace #7c6f64 #7c6f64 #ebdbb2
-        focused_workspace #282828 #282828 #ebdbb2
+        inactive_workspace #282828 #282828 #ebdbb2
         urgent_workspace #2f343a #900000 #ffffff
     }
 }

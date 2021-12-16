@@ -51,7 +51,7 @@ alias less='less -N'
 #dotfile management using git bare repo
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
-export BROWSER=tor-browser
+export BROWSER=firefox
 export XDG_CURRENT_DESKTOP=sway
 export EDITOR=nvim 
 

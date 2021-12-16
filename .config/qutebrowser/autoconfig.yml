@@ -22,9 +22,9 @@ settings:
     global: false
   content.cookies.accept:
     '*://search.disroot.org/*': no-3rdparty
-    global: never
+    global: no-3rdparty
   content.cookies.store:
-    global: false
+    global: true
   content.headers.accept_language:
     global: en-US,en;q=0.5
   content.headers.custom:
@@ -33,7 +33,7 @@ settings:
   content.headers.do_not_track:
     global: true
   content.headers.user_agent:
-    global: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0
+    global: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
   content.javascript.enabled:
     '*://en.wikipedia.org/*': true
     '*://eu-browse.startpage.com/*': true
@@ -44,7 +44,7 @@ settings:
     '*://www.startpage.com/*': true
     global: false
   content.user_stylesheets:
-    global: null
+    global: ~/.config/qutebrowser/gruvbox-all-sites.css
   content.webgl:
     global: false
   statusbar.widgets:
@@ -59,6 +59,8 @@ settings:
     global:
       DEFAULT: https://search.disroot.org/?q={}
   url.start_pages:
-    global: https://www.startpage.com/do/mypage.pl?prfe=162a575c2be95c6baf1796e95718c1e1d31123b0afa281701727edfd6ff2c3bc9f19610ab94fb9147ccd729ec24469cc7f9e33132dcb0055f453d8c219673017f1771f8522b1e01ee791ded3c03c
+    global: ddg.gg
   window.transparent:
     global: false
+  zoom.default:
+    global: '110'
