@@ -2,7 +2,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-#xwayland disable
+xwayland disable
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -17,7 +17,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi -show drun
+set $menu wofi -show drun -s ~/.config/wofi/style.css
 #run | dmenu | xargs swaymsg exec --
 
 ### Output configuration
@@ -108,7 +108,7 @@ output "*" bg ~/.config/sway/dark_girl_bg.png fill
     bindsym $mod+Escape			exec swaylock
     bindsym $mod+t			exec $term -e htop
     bindsym $mod+z			exec zathura
-    bindsym $mod+i			exec qutebrowser 
+    bindsym $mod+i			exec firefox 
 #
 # Moving around:
 #
@@ -230,7 +230,7 @@ bindsym $mod+r mode "resize"
 bar {
     #mode hide
     font pango:FiraMono Medium 13
-    position top
+    position top 
     workspace_buttons yes
     tray_output *
     status_padding 2
@@ -276,5 +276,6 @@ title_align center
 #--- default borders -------------------------------------------------------
 default_floating_border	pixel	2	
 default_border		pixel	2	
+#smart_borders on
 
 include /etc/sway/config.d/*

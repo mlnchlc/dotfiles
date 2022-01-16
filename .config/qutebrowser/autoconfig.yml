@@ -18,13 +18,15 @@ settings:
     global: dark
   content.autoplay:
     global: false
+  content.blocking.method:
+    global: both
   content.canvas_reading:
     global: false
   content.cookies.accept:
     '*://search.disroot.org/*': no-3rdparty
-    global: no-3rdparty
+    global: never
   content.cookies.store:
-    global: true
+    global: false
   content.headers.accept_language:
     global: en-US,en;q=0.5
   content.headers.custom:

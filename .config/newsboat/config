@@ -1,9 +1,11 @@
 include /usr/share/doc/newsboat/contrib/colorschemes/gruvbox
 
 show-keymap-hint false
-#browser "/usr/bin/qutebrowser"
+browser "/usr/bin/firefox"
 pager internal
 auto-reload yes
+highlight feedlist "--.*--" blue color0 bold
+highlight feedlist ".*0/0.." default color0 invis 
 
 # jk - move up/down
 unbind-key j

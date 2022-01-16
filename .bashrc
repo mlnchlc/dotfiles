@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # funny
-fortune
+cowfortune
 
 # start sway automatically on tty1 login
 # if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
@@ -51,6 +51,9 @@ alias less='less -N'
 #dotfile management using git bare repo
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
+#syncthing shortcut
+alias sync='syncthing serve --no-browser'
+
 export BROWSER=firefox
 export XDG_CURRENT_DESKTOP=sway
 export EDITOR=nvim 
@@ -60,5 +63,3 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 # log history across multiple terminal instances without having to exit
 export PROMPT_COMMAND='history -a;history -c;history -r' 
-
-
