@@ -2,7 +2,31 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-xwayland disable
+#xwayland disable
+
+# Colors
+set $red_color #cc241d
+set $red2_color #fb4934
+set $green_color #98971a
+set $green2_color #d8bb26
+set $yellow_color #d79921
+set $yellow2_color #fabd2f
+set $blue_color #458588
+set $blue2_color #83a598
+set $aqua_color #689d6a
+set $aqua2_color #8ec07c
+set $gray_color #a89984
+set $gray2_color #928374
+set $orange_color #d65d0e
+set $orange2_color #fe8019
+set $bg0_color #282828
+set $bg1_color #3c3836
+set $bg2_color #504945
+set $bg3_color #665c54
+set $bg4_color #7c6f64
+set $bg0_h_color #1d2021
+set $fg_color #ebdbb2
+set $gruvbox-dark-bg0-hard #1d2021
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -17,7 +41,8 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi -show drun -s ~/.config/wofi/style.css
+#set $menu wofi -show drun -s ~/.config/wofi/style.css
+set $menu rofi -show combi
 #run | dmenu | xargs swaymsg exec --
 
 ### Output configuration
@@ -230,24 +255,24 @@ bindsym $mod+r mode "resize"
 bar {
     #mode hide
     font pango:FiraMono Medium 13
-    position top 
+    position top
     workspace_buttons yes
     tray_output *
     status_padding 2
     status_edge_padding 2
     strip_workspace_numbers no
     #strip_workspace_name yes
-    gaps 0
+    gaps 1
     icon_theme Papirus-Dark
     status_command /usr/bin/i3status-rs 
     colors {
-        separator #ebdbb2
-        background #282828
-        statusline #ebdbb2
-        focused_workspace #ebdbb2 #ebdbb2 #282828
-        active_workspace #7c6f64 #7c6f64 #ebdbb2
-        inactive_workspace #282828 #282828 #ebdbb2
-        urgent_workspace #2f343a #900000 #ffffff
+        separator $fg_color
+        background $bg0_color
+        statusline $fg_color
+        focused_workspace $fg_color $fg_color $bg0_color
+        active_workspace $bg4_color $bg4_color $fg_color 
+        inactive_workspace  $bg0_color $bg0_color $fg_color
+        urgent_workspace $bg4_color $bg4_color $fg_color 
     }
 }
 
@@ -256,14 +281,17 @@ bar {
 #for_window [app_id="org.qutebrowser.qutebrowser"] opacity 0.5
 
 #Colors
-client.focused		#d5c4a1	#d5c4a1	#ebdbb2 #ebdbb2
-client.focused_inactive	#3c3836 #3c3836 #ebdbb2 #ebdbb2
-client.unfocused	#3c3836 #3c3836 #ebdbb2 #ebdbb2
-client.urgent		#3c3836 #3c3836 #ebdbb2 #ebdbb2
+client.focused		$fg_color $fg_color $fg_color $green_color  
+client.focused_inactive	$bg1_color $bg1_color  $fg_color 
+
+client.unfocused $bg1_color 3c3836 $bg1_color  $fg_color 
+
+client.urgent		$red_color $red_color  $fg_color 
+
 
 
 #--- gaps ------------------------------------------------------------------
-gaps inner 4
+gaps inner 3
 gaps outer 0
 
 #--- titlebar --------------------------------------------------------------
