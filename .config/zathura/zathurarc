@@ -1,4 +1,5 @@
-set guioptions			""
+#gruvbox dark
+
 set notification-error-bg       "#282828" # bg
 set notification-error-fg       "#fb4934" # bright:red
 set notification-warning-bg     "#282828" # bg
@@ -40,4 +41,7 @@ set recolor-darkcolor           "#ebdbb2" # fg
 set recolor                     "true"
 set recolor-keephue             true      # keep original color
 
+#set page-padding 3
 set selection-clipboard clipboard
+set guioptions ""
+  

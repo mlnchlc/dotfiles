@@ -1,28 +1,26 @@
-#        _                 _ _   _
 #   __ _| | __ _  ___ _ __(_) |_| |_ _   _
 #  / _` | |/ _` |/ __| '__| | __| __| | | |
 # | (_| | | (_| | (__| |  | | |_| |_| |_| |
 #  \__,_|_|\__,_|\___|_|  |_|\__|\__|\__, |
 #                                    |___/
-
 # Font configuration (changes require restart)
 font:
   # The normal (roman) font face to use.
   normal:
-    family: FiraMono
+    family: JetBrains Mono 
     # Style can be specified to pick a specific face.
-    style: Medium
+    style: Regular
 
   # The bold font face
   bold:
-    family: FiraMono
+    family: JetBrains Mono
     # Style can be specified to pick a specific face.
     #
     style: Bold
 
   # The italic font face
   italic:
-    family: FiraSans
+    family: JetBrains Mono
     # Style can be specified to pick a specific face.
     style: Italic
   size: 12.0

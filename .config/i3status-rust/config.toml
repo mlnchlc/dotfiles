@@ -1,34 +1,8 @@
-#red_color = "#cc241d"
-#red2_color = "#fb4934"
-#green_color = "#98971a"
-#green2_color = "#d8bb26"
-#yellow_color = "#d79921"
-#yellow2_color = "#fabd2f"
-#blue_color = "#458588"
-#blue2_color = "#83a598"
-#aqua_color = "#689d6a"
-#aqua2_color = "#8ec07c"
-#gray_color = "#a89984"
-#gray2_color = "#928374"
-#orange_color = "#d65d0e"
-#orange2_color = "#fe8019"
-
-#bg0_color = "#282828"
-#bg1_color = "#3c3836"
-#bg2_color = "#504945"
-#bg3_color = "#665c54"
-#bg4_color = "#7c6f64"
-#bg0_h_color = "#1d2021"
-
-#fg_color = "#ebdbb2"
-
 [theme]
 name = "gruvbox-dark"
 
-
 [icons]
-name = "awesome"
-[theme.overrides]
+name = "material-nf"
 
 [[block]]
 block = "focused_window"
@@ -42,7 +16,7 @@ format = "%a %m/%d %R"
 
 [[block]]
 block = "networkmanager"
-on_click = "alacritty -e nmtui"
+on_click = "foot nmtui"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 interface_name_include = []
 ap_format = "{ssid^10}"
@@ -57,7 +31,7 @@ max_vol = 150
 
 [[block]]
 block = "backlight"
-invert_icons = true
+invert_icons = false
 
 [[block]]
 block = "memory"
@@ -66,14 +40,14 @@ format_mem = "{mem_used}"
 format_swap = "{swap_used_percents}"
 interval = 10
 
-[[block]]
-block = "disk_space"
-path = "/"
-alert = 90.0
-warning = 70.0
-info_type = "used"
-interval = 1000
-format = "{icon} {available}"
+#[[block]]
+#block = "disk_space"
+#path = "/"
+#alert = 90.0
+#warning = 70.0
+#info_type = "used"
+#interval = 1000
+#format = "{icon} {available}"
 
 [[block]]
 block = "temperature"

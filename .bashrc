@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # funny
-cowfortune
+fortune -co
 
 # start sway automatically on tty1 login
 # if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
@@ -39,27 +39,16 @@ alias pvpnc='sudo protonvpn c -f'
 alias pvpnd='sudo protonvpn d'
 alias pvpns='protonvpn status'
 
-# start sway with logging
 alias sway='sway -d 2> ~/sway.log' 
-
-# firefox temp profile for shitty government websites
 alias firefox-throwaway='firefox -no-remote -profile $(mktemp -d)'
-
-# line numbering with less, why isn't it default?
-alias less='less -N'
-
-#dotfile management using git bare repo
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
-
-#syncthing shortcut
+alias less='less -N' # line numbering with less, why isn't it default?
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME" #dotfile management using git bare repo
 alias sync='syncthing serve --no-browser'
 
+export PATH=$PATH:~/.local/bin
 export BROWSER=firefox
 export XDG_CURRENT_DESKTOP=sway
-export EDITOR=nvim 
+export EDITOR=lvim
+export QT_QPA_PLATFORMTHEME=qt5ct  # uniform look and feel of qt apps
+export PROMPT_COMMAND='history -a;history -c;history -r' # log history across multiple terminal instances without having to exit
 
-# uniform look and feel of qt apps
-export QT_QPA_PLATFORMTHEME=qt5ct 
-
-# log history across multiple terminal instances without having to exit
-export PROMPT_COMMAND='history -a;history -c;history -r' 

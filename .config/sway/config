@@ -26,7 +26,6 @@ set $bg3_color #665c54
 set $bg4_color #7c6f64
 set $bg0_h_color #1d2021
 set $fg_color #ebdbb2
-set $gruvbox-dark-bg0-hard #1d2021
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -37,7 +36,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -49,12 +48,13 @@ set $menu rofi -show combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 
-output "*" bg ~/.config/sway/dark_girl_bg.png fill
+output "*" bg ~/.config/sway/dark_girl_grey.png fill
 
 #
 # Example configuration:
 #
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+   output eDP-1 resolution 1920x1080 position 0,0
+   output HDMI-A-1 resolution 1280x720 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -254,7 +254,7 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     #mode hide
-    font pango:FiraMono Medium 13
+    font pango:JetBrainsMono Nerd Font Medium
     position top
     workspace_buttons yes
     tray_output *
@@ -262,14 +262,14 @@ bar {
     status_edge_padding 2
     strip_workspace_numbers no
     #strip_workspace_name yes
-    gaps 1
+    gaps 0
     icon_theme Papirus-Dark
     status_command /usr/bin/i3status-rs 
     colors {
         separator $fg_color
         background $bg0_color
         statusline $fg_color
-        focused_workspace $fg_color $fg_color $bg0_color
+        focused_workspace $yellow_color $yellow_color $bg0_color
         active_workspace $bg4_color $bg4_color $fg_color 
         inactive_workspace  $bg0_color $bg0_color $fg_color
         urgent_workspace $bg4_color $bg4_color $fg_color 
@@ -281,21 +281,17 @@ bar {
 #for_window [app_id="org.qutebrowser.qutebrowser"] opacity 0.5
 
 #Colors
-client.focused		$fg_color $fg_color $fg_color $green_color  
+client.focused  $yellow_color $yellow_color $fg_color $yellow_color  
 client.focused_inactive	$bg1_color $bg1_color  $fg_color 
-
-client.unfocused $bg1_color 3c3836 $bg1_color  $fg_color 
-
+client.unfocused $bg0_color $bg0_color $bg0_color 
 client.urgent		$red_color $red_color  $fg_color 
-
-
 
 #--- gaps ------------------------------------------------------------------
 gaps inner 3
 gaps outer 0
 
 #--- titlebar --------------------------------------------------------------
-font "FiraMono Medium 10"
+font "JetBrainsMono Nerd Font Medium 10"
 for_window [title="."] title_format "%title"
 titlebar_border_thickness	0
 titlebar_padding 3	3
@@ -304,6 +300,6 @@ title_align center
 #--- default borders -------------------------------------------------------
 default_floating_border	pixel	2	
 default_border		pixel	2	
-#smart_borders on
+smart_borders on
 
 include /etc/sway/config.d/*
