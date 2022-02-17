@@ -1,11 +1,10 @@
 max-visible=5
-
 anchor=top-right
-font=FiraMono 
+font=JetBrainsMono Nerd Font Medium 10
 default-timeout=5000
 icons=1
-markup=1
 
+markup=1
 padding=5
 
 background-color=#282828
@@ -14,7 +13,7 @@ text-color=#fbf1c7
 
 border-color=#d79921
 border-size=2
-border-radius=2
+border-radius=10
 
 [urgency=high]
 ignore-timeout=1

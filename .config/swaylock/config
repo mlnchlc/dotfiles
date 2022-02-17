@@ -2,15 +2,16 @@
 indicator
 daemonize
 indicator-caps-lock
-screenshots
-grace=7
+#screenshots
+grace=3
+color=#282828
 
 # Effects
 scaling=fill
 effect-scale=1
-#effect-greyscale
+effect-greyscale
 effect-pixelate=10
-#effect-blur=4x4
+effect-blur=4x4
 effect-vignette=0.8:0.01
 fade-in=0.5
 
@@ -41,9 +42,9 @@ layout-text-color=#ebdbb1ff
 
 # TEXT
 font-size=30
-font=Fira Mono
 text-color=#ebdbb1ff
 text-clear-color=#d8dee900
 text-ver-color=#d8dee900
 text-wrong-color=#d8dee900
 text-caps-lock-color=#ebdbb1
+font=JetBrainsMono 
