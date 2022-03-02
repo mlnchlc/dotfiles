@@ -2,7 +2,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-xwayland disable
+#xwayland disable
 
 # Colors
 set $red_color #cc241d
@@ -253,9 +253,9 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    #mode hide
+    mode hide
     font pango:JetBrainsMono Nerd Font Medium
-    position top
+    position bottom
     workspace_buttons yes
     tray_output *
     status_padding 2

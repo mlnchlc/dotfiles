@@ -7,8 +7,17 @@ name = "material-nf"
 [[block]]
 block = "focused_window"
 max_width = 50
-
 show_marks = "visible"
+
+[[block]]
+block = "pomodoro"
+length = 25
+break_length = 5
+message = "take a break"
+break_message = "back to work"
+notifier = "swaynag"
+
+
 [[block]]
 block = "time"
 interval = 60
