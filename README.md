@@ -1,1 +1,1 @@
-My SwayWM rice
+My i3-gaps rice
