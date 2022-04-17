@@ -2,16 +2,15 @@
 indicator
 daemonize
 indicator-caps-lock
-#screenshots
-grace=3
-color=#282828
+screenshots
+grace=5
 
 # Effects
 scaling=fill
 effect-scale=1
 effect-greyscale
 effect-pixelate=10
-effect-blur=4x4
+# effect-blur=4x4
 effect-vignette=0.8:0.01
 fade-in=0.5
 

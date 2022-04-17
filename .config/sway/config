@@ -128,12 +128,12 @@ output * adaptive_sync on
     bindsym XF86AudioPrev		exec --no-startup-id playerctl previous
     bindsym XF86MonBrightnessUp		exec --no-startup-id brightnessctl -d amdgpu_bl0 -e s +5% 
     bindsym XF86MonBrightnessDown	exec --no-startup-id  brightnessctl -d amdgpu_bl0 -e s 5%-
-    bindsym $mod+m			exec element-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland
     bindsym $mod+q 			exec qutebrowser
     bindsym $mod+Escape			exec swaylock
     bindsym $mod+t			exec $term -e htop
     bindsym $mod+z			exec zathura
     bindsym $mod+i			exec firefox 
+    bindsym $mod+m			exec dm-radio.sh 
 #
 # Moving around:
 #
@@ -255,7 +255,7 @@ bindsym $mod+r mode "resize"
 bar {
     mode hide
     font pango:JetBrainsMono Nerd Font Medium
-    position bottom
+    position top
     workspace_buttons yes
     tray_output *
     status_padding 2

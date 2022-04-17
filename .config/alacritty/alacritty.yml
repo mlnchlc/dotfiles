@@ -7,23 +7,23 @@
 font:
   # The normal (roman) font face to use.
   normal:
-    family: JetBrains Mono 
+    family: JetBrainsMono Nerd Font
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     # Style can be specified to pick a specific face.
     #
     style: Bold
 
   # The italic font face
   italic:
-    family: JetBrains Mono
+    family: JetBrainsMono Nerd Font
     # Style can be specified to pick a specific face.
     style: Italic
-  size: 12.0
+  size: 10.0
 
 # Colors (Gruvbox dark)
 colors:
@@ -86,7 +86,7 @@ colors:
   # indexed_colors: []
 
 
-background_opacity: 1
+window.opacity: 0.0
 env:
         TERM: xterm-256color
 
