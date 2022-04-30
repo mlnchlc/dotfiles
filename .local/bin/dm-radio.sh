@@ -35,6 +35,7 @@ stations["Classical KDFC"]="https://playerservices.streamtheworld.com/api/livest
 stations["TuneIn - Hot Hip Hop and R&B"]="http://tunein4.streamguys1.com/hhhrbfree1"
 stations["Hot 108 Jamz"]="http://sc.hot108.com:4000/"
 stations["Hunter FM - LoFi"]="https://live.hunter.fm/lofi_high"
+stations["Your Classical - Peaceful Piano"]="http://peacefulpiano.stream.publicradio.org/peacefulpiano.mp3"
 #
 
 menu() {

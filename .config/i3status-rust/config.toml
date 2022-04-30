@@ -2,7 +2,6 @@
 name = "gruvbox-dark"
 
 [theme.overrides]
-idle_bg = "#2828287F"
 name = "gruvbox-dark"
 [icons]
 name = "material-nf"

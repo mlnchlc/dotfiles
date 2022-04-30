@@ -86,7 +86,7 @@ colors:
   # indexed_colors: []
 
 
-window.opacity: 0.0
+window.opacity: 1.0
 env:
         TERM: xterm-256color
 
