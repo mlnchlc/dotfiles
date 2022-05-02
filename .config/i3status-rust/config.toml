@@ -27,7 +27,7 @@ format = "%a %m/%d %R"
 
 [[block]]
 block = "networkmanager"
-on_click = "foot nmtui"
+on_click = "alacritty -e nmtui"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 interface_name_include = []
 ap_format = "{ssid^10}"

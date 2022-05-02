@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # funny
-fortune -co
+fortune -acos
 
 # start sway automatically on tty1 login
 # if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then

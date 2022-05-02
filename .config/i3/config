@@ -23,14 +23,9 @@ set $fg_color #ebdbb2
 set $transparent #00000000
 
 set $mod Mod4
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:JetBrainsMono Nerd Font Medium
-
 exec --no-startup-id feh --bg-fill --randomize ~/wallpapers/gruvbox/* &
-# exec --no-startup-id picom &
-# exec --no-startup-id dunst
+exec --no-startup-id picom &
+exec --no-startup-id dunst
 # exec --no-startup-id autotiling &
 # exec --no-startup-id udiskie &
 
@@ -39,7 +34,7 @@ exec --no-startup-id feh --bg-fill --randomize ~/wallpapers/gruvbox/* &
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -ef -c 282828 --nofork
 
 
 # Use pactl to adjust volume in PulseAudio.
@@ -51,7 +46,14 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # screenshot
 bindsym Print exec --no-startup-id scrot
-bindsym Shift+Print exec --no-startup-id 'scrot -s'
+bindsym Shift+Print --release exec --no-startup-id scrot -s
+
+#user scripts
+bindsym $mod+m exec ~/.local/bin/dm-radio.sh
+bindsym $mod+i exec --no-startup-id qutebrowser
+
+#focus urgent window
+bindsym $mod+x [urgent=latest] focus
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -83,10 +85,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -116,12 +118,12 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-bindsym $mod+m exec ~/.local/bin/dm-radio.sh
-bindsym $mod+i exec --no-startup-id qutebrowser
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+
+#press mpd + current workspace to go to previous ws
+# workspace_auto_back_and_forth yes
+# focus_on_window_activation focus
 
 set $ws1 "1"
 set $ws2 "2"
@@ -135,12 +137,6 @@ set $ws9 "9"
 set $wsX "10"
 
 # switch to workspace
-bindsym $mod+Print exec \
-    import -window $( \
-        i3-msg -t get_tree | \
-        jq 'recurse(.nodes[]) | select(.focused).window' \
-    ) png:- | \
-    xclip -selection clipboard -t image/png
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -164,8 +160,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-#screenshot
-bindsym --release Print exec xfce-screenshooter -i
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -181,14 +175,14 @@ bindsym $mod+r mode "resize"
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-       # Pressing left will shrink the window’s width.
+        # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -202,6 +196,29 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+
+set $Locker i3lock -ef -c 282828 && sleep 1
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Escape mode "$mode_system"
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -212,30 +229,32 @@ bar {
         mode hide
         # strip_workspace_numbers yes
         colors {
-
-  	separator $bg0_color
-        background $bg0_color
-        statusline $bg0_color
-        focused_workspace $yellow_color $yellow_color $bg0_color
-        active_workspace $bg4_color $bg4_color $fg_color 
-        inactive_workspace  $bg0_color $bg0_color $fg_color
-        urgent_workspace $bg4_color $bg4_color $fg_color 
+          separator $bg0_color
+          background $bg0_color
+          statusline $bg0_color
+          focused_workspace $yellow_color $yellow_color $bg0_color
+          active_workspace $bg4_color $bg4_color $fg_color 
+          inactive_workspace  $bg0_color $bg0_color $fg_color
+          urgent_workspace $bg4_color $bg4_color $fg_color 
     }
 }
 
 
-#Colors
-client.focused  $yellow_color $yellow_color $fg_color $yellow_color  
+# Colors
+# class         title-border  backgr.   text    indicator   child_border
+client.focused  $gray_color $gray_color $bg0_color $gray_color
 client.focused_inactive	$bg1_color $bg1_color  $fg_color 
-client.unfocused $bg0_color $bg0_color $bg0_color 
+client.unfocused $bg0_color $bg0_color $fg_color
 client.urgent		$red_color $red_color  $fg_color 
 
-#--- gaps ------------------------------------------------------------------
+# --- gaps ------------------------------------------------------------------
 gaps inner 3
 gaps outer 0
 
+
+
 #--- titlebar --------------------------------------------------------------
-font "JetBrainsMono Nerd Font Medium 10"
+font pango:JetBrainsMono Nerd Font Medium
 for_window [title="."] title_format "%title"
 title_align center
 
@@ -247,3 +266,19 @@ default_border		pixel	3
 smart_gaps on
 # smart_borders on
 
+#correct handling of floating dialogs 
+for_window [window_role="pop-up"] floating enable for_window [window_role="task-dialog"] floating enable
+
+# Automatically putting clients on specific workspaces
+# assign [class="discord"] 6
+for_window [class="Alacritty"] move container to workspace $ws1; workspace 1
+for_window [class="Code"] move container to workspace $ws2; workspace 2
+for_window [class="Arduino"] move container to workspace $ws2; workspace 2
+for_window [class="qutebrowser"] move container to workspace $ws3; workspace 3
+for_window [class="firefox"] move container to workspace $ws3; workspace 3
+for_window [class="Brave"] move container to workspace $ws3; workspace 3
+for_window [class="Tor Browser"] move container to workspace $ws3; workspace 3
+for_window [class="Zathura"] move container to workspace $ws4; workspace 4
+for_window [class="weechat"] move container to workspace $ws4; workspace 5
+for_window [class="discord"] move container to workspace $ws4; workspace 5
+for_window [class="Instagram"] move container to workspace $ws4; workspace 5
