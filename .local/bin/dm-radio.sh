@@ -54,7 +54,8 @@ notify_end() {
 
 kill_running_media() {
   if [ "$(playerctl status)" == "Playing" ]; then
-    playerctl -a stop;
+      killall mpv;
+    # playerctl -a stop;
   fi
 }
 

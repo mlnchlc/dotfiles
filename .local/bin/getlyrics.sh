@@ -44,6 +44,7 @@ main() {
     curr_song="$(get_playing_song)"
     if [ "$curr_song" != "$prev_song" ]; then # when new song comes on
       clear;
+      notify-send "Now Playing:$curr_song"
       echo $curr_song;
       print_lyrics "$(get_first_result "$(get_playing_song)")"
     fi
