@@ -9,12 +9,13 @@
 window {
     background-color: @background;
     border:           2;
-    border-radius:    10;
+    border-radius:    0;
 }
 
 mainbox {
     border:  0;
     margin: 15;
+    border-radius:	5;
 
 }
 

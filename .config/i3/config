@@ -22,6 +22,7 @@ set $bg0_h_color #1d2021
 set $fg_color #ebdbb2
 set $transparent #00000000
 
+set $term st
 set $mod Mod4
 exec --no-startup-id feh --bg-fill --randomize ~/wallpapers/gruvbox/* &
 exec --no-startup-id picom &
@@ -32,9 +33,10 @@ exec --no-startup-id dunst
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
+set $Locker i3lock -ef -c 282828 --nofork && sleep 1
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -ef -c 282828 --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $Locker 
 
 
 # Use pactl to adjust volume in PulseAudio.
@@ -59,13 +61,15 @@ bindsym $mod+x [urgent=latest] focus
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $term 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show combi
+
+ bindsym $mod+d exec --no-startup-id rofi -show combi
+# bindsym $mod+d exec rofi -show combi
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -197,7 +201,6 @@ mode "resize" {
 }
 
 
-set $Locker i3lock -ef -c 282828 && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -225,8 +228,8 @@ bar {
         status_command i3status-rs
         font pango:JetBrainsMono Nerd Font Medium
         i3bar_command i3bar --transparency
-        position bottom
-        mode hide
+        position top
+        # mode hide
         # strip_workspace_numbers yes
         colors {
           separator $bg0_color
@@ -272,6 +275,7 @@ for_window [window_role="pop-up"] floating enable for_window [window_role="task-
 # Automatically putting clients on specific workspaces
 # assign [class="discord"] 6
 for_window [class="Alacritty"] move container to workspace $ws1; workspace 1
+for_window [class="St"] move container to workspace $ws1; workspace 1
 for_window [class="Code"] move container to workspace $ws2; workspace 2
 for_window [class="Arduino"] move container to workspace $ws2; workspace 2
 for_window [class="qutebrowser"] move container to workspace $ws3; workspace 3
