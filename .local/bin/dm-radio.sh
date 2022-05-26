@@ -26,6 +26,7 @@ stations["SomaFM - n5md"]="https://somafm.com/n5md130.pls"
 stations["SomaFM - Space Station Soma"]="http://ice1.somafm.com/spacestation-128-aac"
 stations["SomaFM - Drone Zone"]="http://ice1.somafm.com/dronezone-256-mp3"
 stations["SomaFM - Suburbs of Goa"]="http://somafm.com/suburbsofgoa130.pls"
+stations["SomaFM - Dark Zone"]="https://ice6.somafm.com/darkzone-256-mp3"
 stations["Listen.Moe"]="https://listen.moe/stream"
 stations["Bongonet - Bangla Rock"]="https://www.bongonet.net/banglarock"
 stations["Cryo Chamber"]="ytdl://ytsearch:'Cryo Chamber Radio'"
@@ -36,7 +37,8 @@ stations["TuneIn - Hot Hip Hop and R&B"]="http://tunein4.streamguys1.com/hhhrbfr
 stations["Hot 108 Jamz"]="http://sc.hot108.com:4000/"
 stations["Hunter FM - LoFi"]="https://live.hunter.fm/lofi_high"
 stations["Your Classical - Peaceful Piano"]="http://peacefulpiano.stream.publicradio.org/peacefulpiano.mp3"
-#
+stations["Radio Record Phonk"]="http://radiorecord.hostingradio.ru/phonk96.aacp"
+
 
 menu() {
   printf '%s\n' "Quit"
