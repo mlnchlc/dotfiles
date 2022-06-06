@@ -42,7 +42,7 @@ alias pvpns='protonvpn status'
 alias sway='sway -d 2> ~/sway.log' 
 alias firefox-throwaway='firefox -no-remote -profile $(mktemp -d)'
 alias less='less -N' # line numbering with less, why isn't it default?
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME" #dotfile management using git bare repo
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" #dotfile management using git bare repo
 alias sync='syncthing serve --no-browser'
 
 export PATH=$PATH:~/.local/bin

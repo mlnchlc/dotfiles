@@ -1,12 +1,12 @@
 configuration {
 	modi: "drun,run";
-	font: "JetBrainsMono Nerd Font Regular 15";
+	font: "JetBrains Mono Nerd Font 15";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
 	show-icons: true;
-	terminal: "st";
+	terminal: "alacritty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/

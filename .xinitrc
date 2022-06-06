@@ -1,2 +1,2 @@
 exec picom &
-exec awesome
+exec i3

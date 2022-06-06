@@ -2,7 +2,7 @@
 #
 # Script name: dm-radio
 # Description: Choose between online radio stations with dmenu.
-# Dependencies: dmenu, mpv, notify-send, playerctl
+# Dependencies: rofi, mpv, libnotify, playerctl
 # Forked from DT's script: https://www.gitlab.com/dwt1/dmscripts
 #
 # Set with the flags "-e", "-u","-o pipefail" cause the script to fail
@@ -20,6 +20,7 @@ stations["Radio Paradise - Mellow Mix"]="http://stream.radioparadise.com/mellow-
 stations["Radio Paradise - World/Etc Mix"]="https://stream.radioparadise.com/world-etc-320"
 stations["Radio Caprice - Industrial/Dark/Ritual/Ambient"]="http://79.120.39.202:9095/"
 stations["Radio Caprice - Post Rock"]="http://79.111.14.76:8004/postrock"
+stations["Radio Caprice - Dark Jazz"]="http://79.120.39.202:9137/"
 stations["SomaFM - Groove Salad"]="http://ice1.somafm.com/groovesalad-256-mp3"
 stations["SomaFM - Deep Space One"]="http://ice1.somafm.com/deepspaceone-128-aac"
 stations["SomaFM - n5md"]="https://somafm.com/n5md130.pls"
@@ -30,7 +31,8 @@ stations["SomaFM - Dark Zone"]="https://ice6.somafm.com/darkzone-256-mp3"
 stations["Listen.Moe"]="https://listen.moe/stream"
 stations["Bongonet - Bangla Rock"]="https://www.bongonet.net/banglarock"
 stations["Cryo Chamber"]="ytdl://ytsearch:'Cryo Chamber Radio'"
-stations["Lofi Girl"]="ytdl://ytsearch:'Lofi Girl Radio'"
+stations["Lofi Girl - Beats to Relax/Study To"]="ytdl://ytsearch:'Lofi Girl - Beats to Relax/Study To'"
+stations["Lofi Girl - Beats to Sleep/Chill To"]="ytdl://ytsearch:'Lofi Girl - Beats to Sleep/Chill To'"
 stations["BBC Radio 1Xtra"]="https://stream.live.vc.bbcmedia.co.uk/bbc_1xtra"
 stations["Classical KDFC"]="https://playerservices.streamtheworld.com/api/livestream-redirect/KDFCFMAAC.aac"
 stations["TuneIn - Hot Hip Hop and R&B"]="http://tunein4.streamguys1.com/hhhrbfree1"
@@ -55,14 +57,14 @@ notify_end() {
 }
 
 kill_running_media() {
-  if [ "$(playerctl status)" == "Playing" ]; then
-      killall mpv;
+  if [ "$(pgrep mpv)" ]; then
+      pkill mpv
     # playerctl -a stop;
   fi
 }
 
 main() {
-  choice=$(menu | dmenu -i -p 'Choose radio station' "$@") || exit 1
+  choice=$(menu | rofi -dmenu -i -p 'Choose radio station' "$@") || exit 1
   case $choice in
     Quit)
       kill_running_media;
@@ -71,7 +73,7 @@ main() {
       ;;
     *)
       kill_running_media;
-      notify_start "$choice" ;
+      notify_start "$choice";
       mpv --no-resume-playback --no-video "${stations["${choice}"]}"
       return
       ;;
