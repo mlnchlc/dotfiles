@@ -20,20 +20,19 @@ set $bg3_color #665c54
 set $bg4_color #7c6f64
 set $bg0_h_color #1d2021
 set $fg_color #ebdbb2
-set $transparent #00000000
 
 set $term alacritty
 set $mod Mod4
 set $locker i3lock -ef -c a89984 --nofork && sleep 1
 
-exec --no-startup-id feh --bg-fill --randomize ~/Sync/wallpapers/gruvbox/* &
+exec --no-startup-id feh --bg-fill --randomize ~/wallpapers/gruvbox/* &
 exec --no-startup-id picom &
 exec --no-startup-id dunst
 exec --no-startup-id xrandr --output HDMI-A-0 --right-of eDP
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker 
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker &
 
 
 # Use pactl to adjust volume in PulseAudio.

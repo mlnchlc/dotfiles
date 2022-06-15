@@ -1,1 +1,1 @@
-My i3-gaps rice
+SwayWM rice with dracula colorscheme
