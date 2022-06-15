@@ -12,7 +12,10 @@ export PROMPT_COMMAND='history -a;history -c;history -r' # log history across mu
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  # exec startx
-# fi
+
+
+# start sway automatically on tty1 login
+ if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway -d 2> ~/sway.log
+fi
 
