@@ -1,60 +1,35 @@
-# Modified default config for sway
-#
-# Read `man 5 sway` for a complete reference.
 
 #xwayland disable
 
-# Colors
-set $red_color #cc241d
-set $red2_color #fb4934
-set $green_color #98971a
-set $green2_color #d8bb26
-set $yellow_color #d79921
-set $yellow2_color #fabd2f
-set $blue_color #458588
-set $blue2_color #83a598
-set $aqua_color #689d6a
-set $aqua2_color #8ec07c
-set $gray_color #a89984
-set $gray2_color #928374
-set $orange_color #d65d0e
-set $orange2_color #fe8019
-set $bg0_color #282828
-set $bg1_color #3c3836
-set $bg2_color #504945
-set $bg3_color #665c54
-set $bg4_color #7c6f64
-set $bg0_h_color #1d2021
-set $fg_color #ebdbb2
 ### Variables
-#
-# Logo key. Use Mod1 for Alt.
+
 set $mod Mod4
-# Home row direction keys, like vim
+
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
 set $term foot
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu wofi -show drun -s ~/.config/wofi/style.css
-set $menu rofi -show combi
+set $menu rofi -show combi -modes combi -combi-modes "drun,run"
 #run | dmenu | xargs swaymsg exec --
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 
-output "*" bg ~/.config/sway/dark_girl_grey.png fill
-output * adaptive_sync on
+  output "*" bg ~/wallpapers/dracula/dracula-wallpaper.svg fill
+  output * adaptive_sync on
 
 #
 # Example configuration:
 #
-   output eDP-1 resolution 1920x1080 position 0,0
+  output eDP-1 resolution 1920x1080 position 0,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -87,7 +62,7 @@ output * adaptive_sync on
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 #
-#Clamshell mode
+# Clamshell mode
     set $laptop eDP-1
     bindswitch --reload --locked lid:on output $laptop disable
     bindswitch --reload --locked lid:off output $laptop enable
@@ -103,7 +78,7 @@ output * adaptive_sync on
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu | xargs swaymsg exec --
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -120,15 +95,14 @@ output * adaptive_sync on
     bindsym $mod+Shift+e		exec swaymsg exit
     bindsym Shift+Print			exec grim -c -s 2 -g "$(slurp)" ~/Pictures/$(date +"%Y-%m-%d-%H-%M-%S")-grim.png
     bindsym Print 			exec grim -c -s 2 ~/Pictures/$(date +"%Y-%m-%d-%H-%M-%S")-grim.png
-    bindsym XF86AudioRaiseVolume 	exec --no-startup-id pamixer -i 5
-    bindsym XF86AudioLowerVolume	exec --no-startup-id pamixer -d 5
-    bindsym XF86AudioMute		exec --no-startup-id pamixer -t
+    bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute               exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym XF86AudioPlay		exec --no-startup-id playerctl play-pause
     bindsym XF86AudioNext		exec --no-startup-id playerctl next
     bindsym XF86AudioPrev		exec --no-startup-id playerctl previous
     bindsym XF86MonBrightnessUp		exec --no-startup-id brightnessctl -d amdgpu_bl0 -e s +5% 
-    bindsym XF86MonBrightnessDown	exec --no-startup-id  brightnessctl -d amdgpu_bl0 -e s 5%-
-    bindsym $mod+q 			exec qutebrowser
+    bindsym XF86MonBrightnessDown	exec --no-startup-id brightnessctl -d amdgpu_bl0 -e s 5%-
     bindsym $mod+Escape			exec swaylock
     bindsym $mod+t			exec $term -e htop
     bindsym $mod+z			exec zathura
@@ -248,44 +222,44 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    mode hide
-    font pango:JetBrainsMono Nerd Font Medium
-    position top
-    workspace_buttons yes
-    tray_output *
-    status_padding 2
-    status_edge_padding 2
-    strip_workspace_numbers no
-    #strip_workspace_name yes
-    gaps 0
-    icon_theme Papirus-Dark
-    status_command /usr/bin/i3status-rs 
-    colors {
-        separator $fg_color
-        background $bg0_color
-        statusline $fg_color
-        focused_workspace $yellow_color $yellow_color $bg0_color
-        active_workspace $bg4_color $bg4_color $fg_color 
-        inactive_workspace  $bg0_color $bg0_color $fg_color
-        urgent_workspace $bg4_color $bg4_color $fg_color 
-    }
-}
-
 #Appearance
 #for_window [class=".*"] opacity 0.8
 #for_window [app_id="org.qutebrowser.qutebrowser"] opacity 0.5
 
 #Colors
-client.focused  $yellow_color $yellow_color $fg_color $yellow_color  
-client.focused_inactive	$bg1_color $bg1_color  $fg_color 
-client.unfocused $bg0_color $bg0_color $bg0_color 
-client.urgent		$red_color $red_color  $fg_color 
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
+client.background       #F8F8F2
+
+bar {
+  font pango:JetBrainsMono Nerd Font Medium
+  position top
+  tray_output *
+  status_padding 2
+  status_edge_padding 2
+  strip_workspace_numbers no
+  #strip_workspace_name yes
+  gaps 0
+  icon_theme Papirus-Dark
+  status_command /usr/bin/i3status-rs
+  icon_theme Papirus-Dark
+  colors {
+    background #282A36
+    statusline #F8F8F2
+    separator  #44475A
+
+    focused_workspace  #44475A #44475A #F8F8F2
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    binding_mode       #FF5555 #FF5555 #F8F8F2
+  }
+}
 #--- gaps ------------------------------------------------------------------
 gaps inner 3
 gaps outer 0
@@ -298,8 +272,8 @@ titlebar_padding 3	3
 title_align center
 
 #--- default borders -------------------------------------------------------
-default_floating_border	pixel	2	
-default_border		pixel	2	
+default_floating_border	pixel	3
+default_border		pixel	3
 smart_borders on
 
 include /etc/sway/config.d/*

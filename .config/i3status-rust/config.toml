@@ -1,8 +1,8 @@
 [theme]
-name = "gruvbox-dark"
+name = "dracula"
 
-[theme.overrides]
-name = "gruvbox-dark"
+# [theme.overrides]
+# name = "gruvbox-dark"
 [icons]
 name = "material-nf"
 
@@ -39,6 +39,7 @@ block = "sound"
 format = "{volume}"
 on_click = "pavucontrol"
 max_vol = 150
+headphones_indicator = true
 
 [[block]]
 block = "backlight"
