@@ -21,7 +21,7 @@ set $menu rofi -show combi -modes combi -combi-modes "drun,run"
 
 ### Output configuration
 
-output "*" bg $(ls ~/wallpapers/dracula/*.png | shuf | head -n1) fill
+output "*" bg $(ls -d ~/wallpapers/* | shuf -n1 | grep -v README) fill
 output * adaptive_sync on
 
 ### Monitor configuration:
@@ -57,8 +57,8 @@ input type:touchpad {
 
 # Clamshell mode
 set $laptop eDP-1
-  bindswitch --reload --locked lid:on output $laptop disable
-  bindswitch --reload --locked lid:off output $laptop enable
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 
 ### Key bindings
 
@@ -212,9 +212,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+### window rules
+
+for_window [class="zathura"] move workspace 4
 ###Appearance
 
-# window rules
 
 #for_window [class=".*"] opacity 0.8
 #for_window [app_id="org.qutebrowser.qutebrowser"] opacity 0.5

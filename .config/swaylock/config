@@ -17,34 +17,32 @@ color=282A36
 
 # Ring
 indicator-radius=100
-indicator-thickness=5
+indicator-thickness=10
 line-uses-ring
-line-uses-inside
-inside-color=#d7992100
-inside-ver-color=#5e81ac00
-inside-caps-lock-color=#eceff400
-inside-wrong-color=#5e81ac00
-inside-clear-color=#5e81ac00
-ring-ver-color=#5e81ac00
-line-color=#ff00ff
-line-wrong-color=#bf616a
-ring-wrong-color=#bf616a
-bs-hl-color=#bf616a00
-ring-clear-color=#ebcb8b
-ring-color=#4c566a00
-key-hl-color=#d08770
-separator-color=#5e81ac00
-layout-text-color=#ebdbb1ff
-line-wrong-color=#d08770
+ring-color=#bd93f9
+inside-color=#caa9fa
+ring-ver-color=#bfbfbf
+inside-ver-color=#e6e6e6
+ring-caps-lock-color=#ff79c6
+inside-caps-lock-color=#ff92d0
+ring-wrong-color=#ff5555
+inside-wrong-color=#ff6e67
+ring-clear-color=#50fa7b
+inside-clear-color=#5af78e
+bs-hl-color=#f1fa8c
+key-hl-color=#f8f8f2
+separator-color=#f1fa8c
+layout-text-color=#ebdbb1
+line-wrong-color=#e6e6e6
 # clock
-layout-bg-color=00000000
-layout-text-color=#ebdbb1ff
+layout-bg-color=000000
+layout-text-color=#ebdbb1
 
 # TEXT
 font-size=30
-text-color=#ebdbb1ff
-text-clear-color=#d8dee900
-text-ver-color=#d8dee900
-text-wrong-color=#d8dee900
-text-caps-lock-color=#ebdbb1
-font=JetBrainsMono 
+text-color=#f8f8f2
+text-clear-color=#f8f8f2
+text-ver-color=#f8f8f2
+text-wrong-color=#f8f8f2
+text-caps-lock-color=#f8f8f2
+font=JetBrainsMono Nerd Font
