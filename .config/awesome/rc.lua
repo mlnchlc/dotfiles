@@ -45,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/dracula/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -278,7 +278,7 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Shift"   }, "e", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
@@ -326,7 +326,42 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- Volume Keys
+    awful.key({}, "XF86AudioLowerVolume",
+        function ()
+            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%", false) end),
+    awful.key({}, "XF86AudioRaiseVolume",
+        function ()
+            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5", false) end),
+    awful.key({}, "XF86AudioMute",
+        function ()
+            awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false) end),
+    -- Media Keys
+    awful.key({}, "XF86AudioPlay",
+        function()
+            awful.util.spawn("playerctl play-pause", false) end),
+    awful.key({}, "XF86AudioNext",
+        function()
+            awful.util.spawn("playerctl next", false) end),
+    awful.key({}, "XF86AudioPrev",
+        function()
+            awful.util.spawn("playerctl previous", false) end),
+    -- Brightness
+    awful.key({}, "XF86MonBrightnessUp",
+        function()
+            awful.util.spawn("brightnessctl -e s +5%") end),
+    awful.key({}, "XF86MonBrightnessDown",
+        function()
+            awful.util.spawn("brightnessctl -e s 5%-") end),
+    --screenshot
+    awful.key({},"Print",
+        function()
+            awful.util.spawn("scrot") end),
+    awful.key({"Shift"}, "Print",
+        function()
+            awful.util.spawn("scrot -s") end)
 )
 
 clientkeys = gears.table.join(
@@ -336,7 +371,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey, "Shift"   }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -490,7 +525,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
