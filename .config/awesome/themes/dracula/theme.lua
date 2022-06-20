@@ -4,11 +4,13 @@
 -------------------------------
 
 local themes_path = require("gears.filesystem").get_configuration_dir() .. "themes/"
+local wallpapers_path= require("gears.filesystem").get_xdg_data_home() .. "wallpapers/"
 local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main
 local theme = {}
-theme.wallpaper = themes_path .. "dracula/zenburn-background.png"
+-- theme.wallpaper = require("gears.filesystem").get_random_file_from_dir(wallpapers_path, { "jpg", "png" }, true)
+theme.wallpaper = themes_path .. "dracula/base_dracula.png"
 -- }}}
 
 -- {{{ Styles
