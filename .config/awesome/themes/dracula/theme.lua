@@ -1,24 +1,24 @@
 -------------------------------
 --  "dracula" awesome theme  --
---    By Adrian C. (anrxc)   --
+--    modified from Adrian C. (anrxc)   --
 -------------------------------
 
 local themes_path = require("gears.filesystem").get_configuration_dir() .. "themes/"
-local wallpapers_path= require("gears.filesystem").get_xdg_data_home() .. "wallpapers/"
 local dpi = require("beautiful.xresources").apply_dpi
 
 -- {{{ Main
 local theme = {}
 -- theme.wallpaper = require("gears.filesystem").get_random_file_from_dir(wallpapers_path, { "jpg", "png" }, true)
-theme.wallpaper = themes_path .. "dracula/base_dracula.png"
+-- theme.wallpaper = wallpaper_path
+theme.wallpaper = "~/wallpapers/Kraken.png"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "Jetbrains Mono Nerd Font Medium 9"
+theme.font      = "IBMPlexMono Medium 8"
 
 -- {{{ Colors
 theme.fg_normal  = "#BFBFBF"
-theme.fg_focus   = "#F8F8F2"
+theme.fg_focus   = "#282136"
 theme.fg_urgent  = "#F8F8F2"
 theme.bg_normal  = "#282136"
 theme.bg_focus   = "#6272A4"
@@ -27,10 +27,10 @@ theme.bg_systray = theme.bg_normal
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = dpi(1)
+theme.useless_gap   = dpi(2)
 theme.border_width  = dpi(3)
-theme.border_normal = "#282A36"
-theme.border_focus  = "#6272a4"
+theme.border_normal = "#6272A4"
+theme.border_focus  = "#FF79C6"
 theme.border_marked = "#FFB86C"
 -- }}}
 

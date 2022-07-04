@@ -12,7 +12,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
+-- local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -48,7 +48,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/dracula/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -63,17 +63,17 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.bottom,
+    --awful.layout.suit.tile.top,
+    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.spiral,
+    --awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    --awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.magnifier,
+    --awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -99,16 +99,20 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
+-- menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", "~/.local/share/applications/", "~/.local/share/bin" }
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
-
+local mytextclock = wibox.widget.textclock()
+local volume_widget, volume_widget_timer = awful.widget.watch(
+                    'bash -c "pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | cut -d/ -f2 | xargs"', 60)
+local brightness_widget, brightness_widget_timer = awful.widget.watch(
+                    'bash -c "brightnessctl -m | awk -F, \'{print substr($4, 0, length($4)-1)}\'"', 60)
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -210,9 +214,28 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            -- mykeyboardlayout,
+            wibox.widget.textbox('  '),
             wibox.widget.systray(),
+            wibox.widget.textbox('  📅'),
             mytextclock,
+            wibox.widget.textbox(' |  📢 '),
+            -- volume
+            volume_widget,
+            wibox.widget.textbox('  |  ☀️ '),
+            -- brightness
+            brightness_widget,
+            --RAM
+            wibox.widget.textbox('%  |  🖥️ '),
+            awful.widget.watch('bash -c "free -h | grep Mem | xargs | cut -d \' \' -f3"', 60),
+            -- cpu temperature
+            wibox.widget.textbox('  |  🌡️'),
+            awful.widget.watch('bash -c "sensors | grep Tctl | cut -d: -f 2 | tr + \' \' | xargs"', 15),
+
+            wibox.widget.textbox('  | 🔋 '),
+            -- battery
+            awful.widget.watch('bash -c "cat /sys/class/power_supply/BAT0/capacity | cut -d/ -f6"', 60),
+            wibox.widget.textbox('%  '),
             s.mylayoutbox,
         },
     }
@@ -235,8 +258,8 @@ globalkeys = gears.table.join(
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
-              {description = "go back", group = "tag"}),
+    -- awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
+              -- {description = "go back", group = "tag"}),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -325,19 +348,32 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
+    -- awful.key({ modkey }, "p", function() menubar.show() end,
+              -- {description = "show the menubar", group = "launcher"}),
+    awful.key({ modkey }, "d",
+        function()
+            awful.util.spawn("rofi -combi-modi window,drun,run -show combi", false) end),
+    -- rofi-calc
+    awful.key({ modkey }, "c",
+        function()
+            awful.util.spawn("rofi -modi calc -show calc -no-show-match -no-sort", false) end),
 
     -- Volume Keys
     awful.key({}, "XF86AudioLowerVolume",
         function ()
-            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%", false) end),
+            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%", false)
+            volume_widget_timer:emit_signal("timeout")
+          end),
     awful.key({}, "XF86AudioRaiseVolume",
         function ()
-            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5", false) end),
+            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%", false)
+            volume_widget_timer:emit_signal("timeout")
+          end),
     awful.key({}, "XF86AudioMute",
         function ()
-            awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false) end),
+            awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle", false) 
+            volume_widget_timer:emit_signal("timeout")
+          end),
     -- Media Keys
     awful.key({}, "XF86AudioPlay",
         function()
@@ -351,17 +387,34 @@ globalkeys = gears.table.join(
     -- Brightness
     awful.key({}, "XF86MonBrightnessUp",
         function()
-            awful.util.spawn("brightnessctl -e s +5%") end),
+            awful.util.spawn("brightnessctl -e s +5%")
+            brightness_widget_timer:emit_signal("timeout")
+          end),
     awful.key({}, "XF86MonBrightnessDown",
         function()
-            awful.util.spawn("brightnessctl -e s 5%-") end),
+            awful.util.spawn("brightnessctl -e s 5%-")
+            brightness_widget_timer:emit_signal("timeout")
+          end),
     --screenshot
     awful.key({},"Print",
         function()
             awful.util.spawn("scrot") end),
     awful.key({"Shift"}, "Print",
         function()
-            awful.util.spawn("scrot -s") end)
+            awful.util.spawn("scrot -s") end),
+    --radio
+    --awful.key({ modkey }, "m",
+--	function()
+ --           awful.util.spawn("dm-radio.sh", false) end),
+    awful.key({ modkey }, "b",
+        function ()
+            myscreen = awful.screen.focused()
+            myscreen.mywibox.visible = not myscreen.mywibox.visible end,
+          {description = "toggle statusbar"}),
+    -- rofi-power-menu
+    awful.key({ modkey }, "Escape",
+        function()
+            awful.util.spawn("rofi -show power-menu -modi \"power-menu:rofi-power-menu --no-symbols --choices=lockscreen/logout/suspend/reboot/shutdown\"", false) end)
 )
 
 clientkeys = gears.table.join(
@@ -488,14 +541,15 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+		     size_hints_honor = false
      }
     },
 
     -- Floating clients.
     { rule_any = {
         instance = {
-          "DTA",  -- Firefox addon DownThemAll.
+          -- "DTA",  -- Firefox addon DownThemAll.
           "copyq",  -- Includes session name in class.
           "pinentry",
         },
@@ -506,7 +560,7 @@ awful.rules.rules = {
           "Kruler",
           "MessageWin",  -- kalarm.
           "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+          -- "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
           "xtightvncviewer"},
@@ -528,10 +582,24 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = false }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    -- terminals
+    --{ rule_any = { class = {"XTerm", "alacritty"} },
+    --  properties = {tag = "1" } },
+    
+    -- code editors
+    { rule_any = { class = {"neovim", "code"} },
+      properties = {tag = "2" } },
+    -- Set browsers to always map on the tag named "3"
+    { rule_any = { class = {"firefox", "Tor Browser", "Chromium", "Brave"} },
+      properties = {tag = "3" } },
+    -- Readers
+    { rule = { class = "Zathura" },
+      properties = {screen = 2, tag = "4" } },
+    -- Media
+    { rule_any = { class = {"Steam", "mpv"} },
+      properties = {screen = 2, tag = "5" } }
 }
+
 -- }}}
 
 -- {{{ Signals
@@ -597,3 +665,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+--
+--

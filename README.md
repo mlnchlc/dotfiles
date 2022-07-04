@@ -1,1 +1,1 @@
-My i3-gaps rice
+### AwesomeWM dotfiles and wallpapers with Dracula colorscheme
