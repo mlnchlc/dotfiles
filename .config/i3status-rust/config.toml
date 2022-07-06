@@ -4,7 +4,7 @@ name = "dracula"
 # [theme.overrides]
 # name = "gruvbox-dark"
 [icons]
-name = "material-nf"
+name = "awesome5"
 
 [[block]]
 block = "focused_window"

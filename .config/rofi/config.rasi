@@ -1,7 +1,7 @@
 configuration {
   modi: "window,drun,ssh,combi";
   combi-modi: "drun,run";
-  font: "JetBrains Mono Nerd Font 12";
+  font: "IBMPlexMono Medium 12";
   show-icons: true;
   terminal: "foot";
   icon-theme: "Papirus-Dark";

@@ -24,9 +24,10 @@ set $menu rofi -show combi -modes combi -combi-modes "drun,run"
 output "*" bg $(ls -d ~/wallpapers/* | shuf -n1 | grep -v README) fill
 output * adaptive_sync on
 
-### Monitor configuration:
 
-output eDP-1 resolution 1920x1080 position 0,0
+### Monitor configuration:
+output HDMI-A-1 resolution 1920x768 position 0 0
+output eDP-1 resolution 1920x1080 position 1366,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -69,7 +70,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec $menu | xargs swaymsg exec --
+bindsym $mod+d exec $menu
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -84,17 +85,17 @@ bindsym $mod+Shift+c reload
 # Exit sway (logs you out of your Wayland session)
 # bindsym $mod+Shift+e 		exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 bindsym $mod+Shift+e		exec swaymsg exit
-bindsym Shift+Print			exec grim -c -s 2 -g "$(slurp)" ~/Pictures/$(date +"%Y-%m-%d-%H-%M-%S")-grim.png
+bindsym Shift+Print		exec grim -c -s 2 -g "$(slurp)" ~/Pictures/$(date +"%Y-%m-%d-%H-%M-%S")-grim.png
 bindsym Print 			exec grim -c -s 2 ~/Pictures/$(date +"%Y-%m-%d-%H-%M-%S")-grim.png
 bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume 	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute               exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioPlay		exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext		exec --no-startup-id playerctl next
 bindsym XF86AudioPrev		exec --no-startup-id playerctl previous
-bindsym XF86MonBrightnessUp		exec --no-startup-id brightnessctl -d amdgpu_bl0 -e s +5% 
+bindsym XF86MonBrightnessUp	exec --no-startup-id brightnessctl -d amdgpu_bl0 -e s +5% 
 bindsym XF86MonBrightnessDown	exec --no-startup-id brightnessctl -d amdgpu_bl0 -e s 5%-
-bindsym $mod+Escape			exec swaylock
+bindsym $mod+Escape		exec rofi -show power-menu -modi "power-menu:rofi-power-menu --no-symbols --choices=lockscreen/logout/suspend/reboot/shutdown"
 bindsym $mod+t			exec $term -e htop
 bindsym $mod+z			exec zathura
 bindsym $mod+i			exec firefox 
@@ -126,6 +127,9 @@ bindsym $mod+Shift+Right move right
 
 ### Workspaces:
 
+# bind workspaces to monitors 
+workspace 1 output eDP-1
+workspace 2 output HDMI-A-1
 # Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -215,7 +219,9 @@ bindsym $mod+r mode "resize"
 ### window rules
 
 for_window [class="zathura"] move workspace 4
-###Appearance
+for_window [title="Firefox"] move workspace 3
+for_window [class="foot"] move workspace 1
+### Appearance
 
 
 #for_window [class=".*"] opacity 0.8
@@ -233,7 +239,7 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 
 bar {
-  font pango:JetBrainsMono Nerd Font Medium
+  font pango:IBMPlex Mono Medium
   position top
   tray_output *
   status_padding 2
@@ -262,7 +268,7 @@ gaps inner 3
 gaps outer 0
 
 # titlebar 
-font "JetBrainsMono Nerd Font Medium 10"
+font "IBMPlex Mono Medium 10"
 for_window [title="."] title_format "%title"
 titlebar_border_thickness       0
 titlebar_padding                3       3
