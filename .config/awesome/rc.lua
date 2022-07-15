@@ -217,25 +217,25 @@ awful.screen.connect_for_each_screen(function(s)
             -- mykeyboardlayout,
             wibox.widget.textbox('  '),
             wibox.widget.systray(),
-            wibox.widget.textbox('  📅'),
+            wibox.widget.textbox(' [ 📅'),
             mytextclock,
-            wibox.widget.textbox(' |  📢 '),
+            wibox.widget.textbox(']  [   '),
             -- volume
             volume_widget,
-            wibox.widget.textbox('  |  ☀️ '),
+            wibox.widget.textbox(' ]  [  '),
             -- brightness
             brightness_widget,
-            --RAM
-            wibox.widget.textbox('%  |  🖥️ '),
+            --RAM 
+            wibox.widget.textbox('% ]  [   '),
             awful.widget.watch('bash -c "free -h | grep Mem | xargs | cut -d \' \' -f3"', 60),
             -- cpu temperature
-            wibox.widget.textbox('  |  🌡️'),
+            wibox.widget.textbox(' ]  [  '),
             awful.widget.watch('bash -c "sensors | grep Tctl | cut -d: -f 2 | tr + \' \' | xargs"', 15),
 
-            wibox.widget.textbox('  | 🔋 '),
+            wibox.widget.textbox(' ]  [ 🔋 '),
             -- battery
             awful.widget.watch('bash -c "cat /sys/class/power_supply/BAT0/capacity | cut -d/ -f6"', 60),
-            wibox.widget.textbox('%  '),
+            wibox.widget.textbox('% ] '),
             s.mylayoutbox,
         },
     }
@@ -403,9 +403,9 @@ globalkeys = gears.table.join(
         function()
             awful.util.spawn("scrot -s") end),
     --radio
-    --awful.key({ modkey }, "m",
---	function()
- --           awful.util.spawn("dm-radio.sh", false) end),
+    awful.key({ modkey }, "i",
+	function()
+            awful.util.spawn("dm-radio.sh", false) end),
     awful.key({ modkey }, "b",
         function ()
             myscreen = awful.screen.focused()
@@ -584,20 +584,20 @@ awful.rules.rules = {
 
     -- terminals
     --{ rule_any = { class = {"XTerm", "alacritty"} },
-    --  properties = {tag = "1" } },
+    --  properties = {screen = 1, tag = "1" } },
     
     -- code editors
-    { rule_any = { class = {"neovim", "code"} },
-      properties = {tag = "2" } },
-    -- Set browsers to always map on the tag named "3"
-    { rule_any = { class = {"firefox", "Tor Browser", "Chromium", "Brave"} },
+    { rule_any = { class = {"neovim", "code", "Arduino"} },
       properties = {tag = "3" } },
+    -- Set browsers to always map on the tag named "3"
+    { rule_any = { class = {"Firefox", "Tor Browser", "Chromium", "Brave"} },
+      properties = {tag = "2" } },
     -- Readers
     { rule = { class = "Zathura" },
-      properties = {screen = 2, tag = "4" } },
+      properties = {tag = "4" } },
     -- Media
-    { rule_any = { class = {"Steam", "mpv"} },
-      properties = {screen = 2, tag = "5" } }
+    { rule_any = { class = {"mpv", "Steam"} },
+      properties = {tag = "5" } }
 }
 
 -- }}}

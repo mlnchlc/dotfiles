@@ -83,6 +83,7 @@ theme.taglist_squares_unsel = themes_path .. "dracula/taglist/squarez.png"
 -- {{{ Misc
 theme.awesome_icon           = themes_path .. "dracula/awesome-icon.png"
 theme.menu_submenu_icon      = themes_path .. "default/submenu.png"
+theme.icon_theme = "/usr/share/icons/Papirus-Dark"
 -- }}}
 
 -- {{{ Layout
