@@ -188,7 +188,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
-        filter  = awful.widget.taglist.filter.all,
+        --filter  = awful.widget.taglist.filter.all,
+	filter = awful.widget.taglist.filter.noempty, 
         buttons = taglist_buttons
     }
 
@@ -207,7 +208,7 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            --mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
@@ -215,27 +216,27 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
-            wibox.widget.textbox('  '),
+            wibox.widget.textbox(' '),
             wibox.widget.systray(),
-            wibox.widget.textbox(' [ 📅'),
+            wibox.widget.textbox('  📅'),
             mytextclock,
-            wibox.widget.textbox(']  [   '),
+            wibox.widget.textbox('    '),
             -- volume
             volume_widget,
-            wibox.widget.textbox(' ]  [  '),
+            wibox.widget.textbox('     '),
             -- brightness
             brightness_widget,
             --RAM 
-            wibox.widget.textbox('% ]  [   '),
+            wibox.widget.textbox('%    '),
             awful.widget.watch('bash -c "free -h | grep Mem | xargs | cut -d \' \' -f3"', 60),
             -- cpu temperature
-            wibox.widget.textbox(' ]  [  '),
+            wibox.widget.textbox('    '),
             awful.widget.watch('bash -c "sensors | grep Tctl | cut -d: -f 2 | tr + \' \' | xargs"', 15),
 
-            wibox.widget.textbox(' ]  [ 🔋 '),
+            wibox.widget.textbox('   🔋 '),
             -- battery
             awful.widget.watch('bash -c "cat /sys/class/power_supply/BAT0/capacity | cut -d/ -f6"', 60),
-            wibox.widget.textbox('% ] '),
+            wibox.widget.textbox('%  '),
             s.mylayoutbox,
         },
     }
@@ -352,7 +353,7 @@ globalkeys = gears.table.join(
               -- {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey }, "d",
         function()
-            awful.util.spawn("rofi -combi-modi window,drun,run -show combi", false) end),
+            awful.util.spawn("rofi -show combi", false) end),
     -- rofi-calc
     awful.key({ modkey }, "c",
         function()
@@ -398,10 +399,10 @@ globalkeys = gears.table.join(
     --screenshot
     awful.key({},"Print",
         function()
-            awful.util.spawn("scrot") end),
+            awful.util.spawn_with_shell("scrot ~/Pictures/%F-%T.png") end),
     awful.key({"Shift"}, "Print",
         function()
-            awful.util.spawn("scrot -s") end),
+            awful.util.spawn_with_shell("scrot -s $HOME/Pictures/%F-%T.png") end),
     --radio
     awful.key({ modkey }, "i",
 	function()
@@ -583,21 +584,23 @@ awful.rules.rules = {
     },
 
     -- terminals
-    --{ rule_any = { class = {"XTerm", "alacritty"} },
-    --  properties = {screen = 1, tag = "1" } },
+    { rule_any = { class = {"XTerm", "alacritty"} },
+      properties = {screen = 1, tag = "1" } },
     
     -- code editors
-    { rule_any = { class = {"neovim", "code", "Arduino"} },
+    { rule_any = { name = {"NVIM", "code", "Arduino"} },
       properties = {tag = "3" } },
     -- Set browsers to always map on the tag named "3"
-    { rule_any = { class = {"Firefox", "Tor Browser", "Chromium", "Brave"} },
+    { rule_any = { class = {"firefox", "Tor Browser", "Chromium", "Brave"} },
       properties = {tag = "2" } },
     -- Readers
     { rule = { class = "Zathura" },
       properties = {tag = "4" } },
     -- Media
-    { rule_any = { class = {"mpv", "Steam"} },
-      properties = {tag = "5" } }
+    { rule_any = { class = {"mpv", "steam"} },
+      properties = {tag = "5", fullscreen = false } },
+    { rule_any = { class = {"Transmission"} },
+      properties = {tag = "9" } }
 }
 
 -- }}}

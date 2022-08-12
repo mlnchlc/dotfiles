@@ -1,10 +1,17 @@
 configuration {
   modi: "window,drun,ssh,combi";
-  combi-modi: "window,drun,run";
+  combi-modi: "drun,run";
   font: "IBMPlexMono Medium 14";
-  show-icons: true;
-  icon-theme: "Papirus-Dark";
+  /* show-icons: true; */
+  /* icon-theme: "Papirus-Dark"; */
   run-shell-command: "{terminal} -e bash -ic "{cmd} && read"";
+  drun-display-format: "{name}";
+  drun {
+	  display-name : "";
+  }
+  run {
+	  display-name : "";
+  }
 }
 
 * {
@@ -37,7 +44,7 @@ configuration {
 #window {
     background-color: @background-color;
     border:           3;
-    border-radius: 6;
+    border-radius: 0;
     border-color: @bordercolor;
     padding:          5;
 }

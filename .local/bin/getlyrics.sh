@@ -46,7 +46,9 @@ main() {
       clear;
       notify-send "Now Playing:$curr_song"
       echo $curr_song;
-      print_lyrics "$(get_first_result "$(get_playing_song)")"
+      song_url="https://azlyrics.com/lyrics/$(echo $curr_song | tr "[:upper:]" "[:lower:]" | tr "-" "/" | sed "s/ //g").html"
+      echo $song_url;
+      print_lyrics $song_url
     fi
     sleep 10s;
     prev_song=$curr_song

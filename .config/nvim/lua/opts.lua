@@ -35,5 +35,8 @@ opt.smartindent = true
 opt.splitright = true            -- bool: Place new window to right of current one
 opt.splitbelow = true            -- bool: Place new window below the current one:w
 
+opt.clipboard = "unnamedplus"
+
+opt.title = true
 opt.completeopt= 'menuone,noinsert,noselect'
 

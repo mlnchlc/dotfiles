@@ -10,33 +10,33 @@ local dpi = require("beautiful.xresources").apply_dpi
 local theme = {}
 -- theme.wallpaper = require("gears.filesystem").get_random_file_from_dir(wallpapers_path, { "jpg", "png" }, true)
 -- theme.wallpaper = wallpaper_path
-theme.wallpaper = "~/wallpapers/Kraken.png"
+theme.wallpaper = "~/wallpapers/Bash rm -rf 1.png"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "IBMPlexMono Medium 8"
+theme.font      = "IBMPlexMono Medium 9"
 
 -- {{{ Colors
 theme.fg_normal  = "#BFBFBF"
-theme.fg_focus   = "#282136"
+theme.fg_focus   = "#282A36"
 theme.fg_urgent  = "#F8F8F2"
-theme.bg_normal  = "#282136"
-theme.bg_focus   = "#6272A4"
+theme.bg_normal  = "#282A36"
+theme.bg_focus   = "#BD93F9"
 theme.bg_urgent  = "#FF5555"
 theme.bg_systray = theme.bg_normal
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = dpi(2)
-theme.border_width  = dpi(3)
-theme.border_normal = "#6272A4"
-theme.border_focus  = "#FF79C6"
-theme.border_marked = "#FFB86C"
+theme.useless_gap   = dpi(1)
+theme.border_width  = dpi(2)
+theme.border_normal = "#44475A"
+theme.border_focus  = "#F8F8F2" --"#FF79C6" --"#6272A4" 
+theme.border_marked = "#FF5555"
 -- }}}
 
 -- {{{ Titlebars
 theme.titlebar_bg_focus  = "#6272a4"
-theme.titlebar_bg_normal = "#282136"
+theme.titlebar_bg_normal = "#282A36"
 -- }}}
 
 -- There are other variable sets
@@ -69,21 +69,23 @@ theme.mouse_finder_color = "#FF79C6"
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_height = dpi(15)
-theme.menu_width  = dpi(100)
+--theme.menu_height = dpi(15)
+--theme.menu_width  = dpi(100)
 -- }}}
 
 -- {{{ Icons
 -- {{{ Taglist
-theme.taglist_squares_sel   = themes_path .. "dracula/taglist/squarefz.png"
-theme.taglist_squares_unsel = themes_path .. "dracula/taglist/squarez.png"
+--theme.taglist_squares_sel   = themes_path .. "dracula/taglist/squarefz.png"
+--theme.taglist_squares_unsel = themes_path .. "dracula/taglist/squarez.png"
 --theme.taglist_squares_resize = "false"
 -- }}}
 
 -- {{{ Misc
 theme.awesome_icon           = themes_path .. "dracula/awesome-icon.png"
 theme.menu_submenu_icon      = themes_path .. "default/submenu.png"
-theme.icon_theme = "/usr/share/icons/Papirus-Dark"
+theme.tasklist_plain_task_name = true
+theme.tasklist_disable_icon= true
+--theme.icon_theme = "/usr/share/icons/Papirus-Dark"
 -- }}}
 
 -- {{{ Layout

@@ -2,7 +2,7 @@
 # ~/.bash_profile
 # 
 export PATH=$PATH:~/.local/bin
-export BROWSER=brave
+export BROWSER=firefox
 export XDG_CURRENT_DESKTOP=awesome
 export EDITOR=nvim
 export PROMPT_COMMAND='history -a;history -c;history -r' # log history across multiple terminal instances without having to exit

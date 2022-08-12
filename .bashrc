@@ -33,6 +33,7 @@ alias fftemp='firefox -no-remote -profile $(mktemp -d)'
 alias less='less -N' # line numbering with less, why isn't it default?
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" #dotfile management using git bare repo
 alias sync='syncthing serve --no-browser'
+alias warp-check='curl --silent "https://www.cloudflare.com/cdn-cgi/trace/" | grep warp'
 
 shopt -s autocd 
 set -o noclobber

@@ -18,7 +18,6 @@ key_mapper('', '<right>', '<nop>')
 key_mapper('i', 'jk', '<ESC>')
 key_mapper('v', 'jk', '<ESC>')
 
-key_mapper('n', 'n', [[:NvimTreeToggle]])
 
 -- nvim-lspconfig
 -- Mappings.
