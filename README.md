@@ -1,1 +1,1 @@
-### AwesomeWM dotfiles and wallpapers with Dracula colorscheme
+### dotfiles and wallpapers with Dracula colorscheme
