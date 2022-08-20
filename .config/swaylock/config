@@ -1,0 +1,48 @@
+# Default look
+# indicator
+daemonize
+indicator-caps-lock
+#  screenshots
+# grace=5
+
+# Effects
+scaling=fill
+# effect-scale=1
+# effect-greyscale
+# effect-pixelate=10
+# effect-blur=4x4
+# effect-vignette=0.8:0.01
+# fade-in=0.5
+color=282A36
+
+# Ring
+indicator-radius=100
+indicator-thickness=10
+line-uses-ring
+ring-color=#bd93f9
+inside-color=#caa9fa
+ring-ver-color=#bfbfbf
+inside-ver-color=#e6e6e6
+ring-caps-lock-color=#ff79c6
+inside-caps-lock-color=#ff92d0
+ring-wrong-color=#ff5555
+inside-wrong-color=#ff6e67
+ring-clear-color=#50fa7b
+inside-clear-color=#5af78e
+bs-hl-color=#f1fa8c
+key-hl-color=#f8f8f2
+separator-color=#f1fa8c
+layout-text-color=#ebdbb1
+line-wrong-color=#e6e6e6
+# clock
+layout-bg-color=000000
+layout-text-color=#ebdbb1
+
+# TEXT
+font-size=30
+text-color=#f8f8f2
+text-clear-color=#f8f8f2
+text-ver-color=#f8f8f2
+text-wrong-color=#f8f8f2
+text-caps-lock-color=#f8f8f2
+font=JetBrainsMono Nerd Font
