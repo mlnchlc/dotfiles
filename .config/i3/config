@@ -26,7 +26,7 @@ set $term alacritty
 set $mod Mod4
 set $locker i3lock -ef -c a89984 --nofork && sleep 1
 
-exec --no-startup-id feh --bg-fill --randomize ~/Sync/wallpapers/gruvbox/* &
+exec --no-startup-id feh --bg-fill --randomize ~/wallpapers/gruvbox/* &
 exec --no-startup-id picom &
 exec --no-startup-id dunst
 exec --no-startup-id xrandr --output HDMI-A-0 --right-of eDP
@@ -198,22 +198,6 @@ mode "resize" {
     bindsym $mod+r mode "default"
 }
 
-
-bindsym $mod+Escape mode "$mode_system"
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
 ## Manual management of external displays
 # Set the shortcuts and what they do
 bindsym $mod+t mode "$mode_display"
@@ -234,14 +218,15 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+bindsym $mod+Escape exec rofi -show power-menu -modi power-menu:rofi-power-menu
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     status_command i3status-rs
-    font pango:JetBrainsMono Nerd Font 11
+    font pango:IBMPlex Mono 11
     i3bar_command i3bar --transparency
-    position top
+    position bottom
     # mode hide
     # strip_workspace_numbers yes
     colors {
@@ -273,6 +258,7 @@ gaps outer 0
 font pango:JetBrainsMono Nerd Font Medium
 for_window [title="."] title_format "%title"
 title_align center
+for_window [class="^.*"] border pixel 3
 
 #--- default borders -------------------------------------------------------
 default_floating_border	pixel	3

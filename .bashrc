@@ -33,6 +33,13 @@ function ytr() {
     mpv --no-video ytdl://ytsearch:"$*"		
 }
 
+function comp() {
+    cp ~/code/template.cpp ~/code/"$1" && $EDITOR ~/code/"$1"
+}
+
+function bp() {
+    cp ~/code/boilerplate.html ~/code/"$1" && $EDITOR ~/code/"$1"
+}
 alias ls='ls --color=auto'
 
 alias pvpnc='sudo protonvpn c -f'
@@ -42,13 +49,12 @@ alias pvpns='protonvpn status'
 alias sway='sway -d 2> ~/sway.log' 
 alias firefox-throwaway='firefox -no-remote -profile $(mktemp -d)'
 alias less='less -N' # line numbering with less, why isn't it default?
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" #dotfile management using git bare repo
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME" #dotfile management using git bare repo
 alias sync='syncthing serve --no-browser'
 
 export PATH=$PATH:~/.local/bin
 export BROWSER=firefox
-export XDG_CURRENT_DESKTOP=i3-gaps
-export EDITOR=nvim
+export EDITOR=helix
 export PROMPT_COMMAND='history -a;history -c;history -r' # log history across multiple terminal instances without having to exit
 
 export QT_QPA_PLATFORMTHEME=qt5ct

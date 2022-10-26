@@ -1,8 +1,6 @@
 [theme]
 name = "gruvbox-dark"
 
-[theme.overrides]
-name = "gruvbox-dark"
 [icons]
 name = "material-nf"
 
@@ -42,7 +40,6 @@ max_vol = 150
 
 [[block]]
 block = "backlight"
-invert_icons = false
 
 [[block]]
 block = "memory"
