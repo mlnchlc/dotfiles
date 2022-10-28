@@ -34,23 +34,19 @@ function ytr() {
 }
 
 function comp() {
-    cp ~/code/template.cpp ~/code/"$1" && $EDITOR ~/code/"$1"
+    cp ~/Code/template.cpp ~/code/"$1" && $EDITOR ~/Code/"$1"
 }
 
 function bp() {
-    cp ~/code/boilerplate.html ~/code/"$1" && $EDITOR ~/code/"$1"
+    cp ~/Code/boilerplate.html ~/code/"$1" && $EDITOR ~/Code/"$1"
 }
 alias ls='ls --color=auto'
-
-alias pvpnc='sudo protonvpn c -f'
-alias pvpnd='sudo protonvpn d'
-alias pvpns='protonvpn status'
-
 alias sway='sway -d 2> ~/sway.log' 
 alias firefox-throwaway='firefox -no-remote -profile $(mktemp -d)'
 alias less='less -N' # line numbering with less, why isn't it default?
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME" #dotfile management using git bare repo
 alias sync='syncthing serve --no-browser'
+alias warp-check='curl https://www.cloudflare.com/cdn-cgi/trace/ | grep warp'
 
 export PATH=$PATH:~/.local/bin
 export BROWSER=firefox
