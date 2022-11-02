@@ -34,11 +34,11 @@ function ytr() {
 }
 
 function comp() {
-    cp ~/Code/template.cpp ~/code/"$1" && $EDITOR ~/Code/"$1"
+    cp ~/Code/template.cpp ~/Code/"$1" && $EDITOR ~/Code/"$1"
 }
 
 function bp() {
-    cp ~/Code/boilerplate.html ~/code/"$1" && $EDITOR ~/Code/"$1"
+    cp ~/Code/boilerplate.html ~/Code/"$1" && $EDITOR ~/Code/"$1"
 }
 alias ls='ls --color=auto'
 alias sway='sway -d 2> ~/sway.log' 
@@ -50,7 +50,7 @@ alias warp-check='curl https://www.cloudflare.com/cdn-cgi/trace/ | grep warp'
 
 export PATH=$PATH:~/.local/bin
 export BROWSER=firefox
-export EDITOR=helix
+export EDITOR=vim
 export PROMPT_COMMAND='history -a;history -c;history -r' # log history across multiple terminal instances without having to exit
 
 export QT_QPA_PLATFORMTHEME=qt5ct

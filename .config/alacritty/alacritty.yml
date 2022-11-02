@@ -7,20 +7,21 @@
 font:
   # The normal (roman) font face to use.
   normal:
-    family: IBMPlexMono
+    family: Fira Mono 
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: IBMPlexMono
+    family: Fira Mono 
+    # Style can be specified to pick a specific face.
     # Style can be specified to pick a specific face.
     #
     style: Bold
 
   # The italic font face
   italic:
-    family: IBMPlexMono
+    family: Fira Mono 
     # Style can be specified to pick a specific face.
     style: Italic
   size: 10.0
