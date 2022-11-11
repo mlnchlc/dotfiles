@@ -244,8 +244,8 @@ client.unfocused $bg0_color $bg0_color $fg_color
 client.urgent		$red_color $red_color  $fg_color 
 
 # --- gaps ------------------------------------------------------------------
-gaps inner 3
-gaps outer 0
+#gaps inner 3
+#gaps outer 0
 
 #--- titlebar --------------------------------------------------------------
 font pango:JetBrainsMono Nerd Font Medium
@@ -258,7 +258,7 @@ default_floating_border	pixel	3
 default_border		pixel	3
 
 # Only enable gaps on a workspace when there is at least one container
-smart_gaps on
+#smart_gaps on
 # smart_borders on
 
 #correct handling of floating dialogs 

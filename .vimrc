@@ -28,7 +28,7 @@ syntax on
 set number
 
 " Highlight cursor line underneath the cursor horizontally.
-set cursorline
+"set cursorline
 
 " Highlight cursor line underneath the cursor vertically.
 " set cursorcolumn
@@ -86,3 +86,5 @@ set wildmode=list:longest
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
+"Set + register as default
+set clipboard=unnamedplus
