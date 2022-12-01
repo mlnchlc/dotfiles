@@ -1,17 +1,19 @@
 [global]
-frame_color = "#1E66F5"
-separator_color= frame
 font = "Fira Mono 10"
+frame_color = "#8AADF4"
+separator_color = frame
+geometry = "300x200-30+20"
+word-wrap = yes
 
 [urgency_low]
-background = "#EFF1F5"
-foreground = "#4C4F69"
+background = "#24273A"
+foreground = "#CAD3F5"
 
 [urgency_normal]
-background = "#EFF1F5"
-foreground = "#4C4F69"
+background = "#24273A"
+foreground = "#CAD3F5"
 
 [urgency_critical]
-background = "#EFF1F5"
-foreground = "#4C4F69"
-frame_color = "#FE640B"
+background = "#24273A"
+foreground = "#CAD3F5"
+frame_color = "#F5A97F"

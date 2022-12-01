@@ -52,5 +52,6 @@ export PATH=$PATH:~/.local/bin
 export BROWSER=firefox
 export EDITOR=vim
 export PROMPT_COMMAND='history -a;history -c;history -r' # log history across multiple terminal instances without having to exit
+export AWT_TOOLKIT=MTOOLKIT
 
 export QT_QPA_PLATFORMTHEME=qt5ct

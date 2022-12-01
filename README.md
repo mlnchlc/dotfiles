@@ -1,1 +1,1 @@
-My i3-gaps rice
+Catppuccin-themed i3-gaps rice

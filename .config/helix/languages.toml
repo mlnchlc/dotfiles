@@ -1,0 +1,10 @@
+# in <config_dir>/helix/languages.toml
+
+[[language]]
+name = "javascript"
+
+[[language]]
+name = "typescript"
+
+[[language]]
+name = "cpp"

@@ -19,7 +19,7 @@ element-text, element-icon , mode-switcher {
 
 window {
     border: 3px;
-    border-color: @border-col;
+    border-color: @grey;
     background-color: @bg-col;
 }
 
@@ -38,7 +38,7 @@ prompt {
     background-color: @blue;
     padding: 6px;
     text-color: @bg-col;
-    border-radius: 3px;
+    border-radius: 5px;
     margin: 20px 0px 0px 20px;
 }
 
@@ -56,7 +56,7 @@ entry {
 
 listview {
     padding: 6px 6px;
-    margin: 10px 0px 0px 20px;
+    margin: 10px;
     columns: 1;
     lines: 10;
     background-color: @bg-col;
@@ -73,8 +73,9 @@ element-icon {
 }
 
 element selected {
-    background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    background-color:  @fg-col2;
+    text-color: @bg-col  ;
+    border-radius: 5px;
 }
 
 mode-switcher {
