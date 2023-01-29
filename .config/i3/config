@@ -1,8 +1,11 @@
-#components--; catpuccin-latte
+# components--; catpuccin-latte
 set $red_color #D20F39
+set $rosewater_color #dc8a78
 set $green_color #40A02B
 set $yellow_color #DF8E1D
 set $blue_color #1E66F5
+set $lavender_color #7287fd
+set $sapphire_color #209fb5
 set $base #EFF1F5
 set $text #4C4F69
 
@@ -10,15 +13,12 @@ set $term alacritty
 set $mod Mod4
 set $locker i3lock -ef -c a89984 --nofork && sleep 1
 
-# exec --no-startup-id feh --bg-fill --randomize ~/wallpapers/gruvbox/* &
 exec --no-startup-id feh --bg-fill /home/avi/wallpapers/os/pop-magenta-blue-1920x1080.png
-exec --no-startup-id picom &
+exec --no-startup-id picom
 exec --no-startup-id dunst
 exec --no-startup-id xrandr --output HDMI-A-0 --right-of eDP
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker 
+exec --no-startup-id xss-lock -- $locker 
+# exec xautolock -time 10 -locker "i3lock -ef -c a89984 --nofork && sleep 1"
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Use pactl to adjust volume in PulseAudio.
@@ -224,9 +224,9 @@ bar {
 
 # Colors
 # class         title-border  backgr.   text    indicator   child_border
-client.focused  $gray_color $gray_color $base $gray_color
+client.focused  $lavender_color $rosewater_color $base $gray_color
 client.focused_inactive	$bg1_color $bg1_color  $text 
-client.unfocused $base $base $text
+client.unfocused $gray_color $gray_color $text
 client.urgent		$red_color $red_color  $text 
 
 # --- gaps ------------------------------------------------------------------
@@ -253,6 +253,7 @@ for_window [window_role="pop-up"] floating enable for_window [window_role="task-
 # Automatically putting clients on specific workspaces
 for_window [class="Alacritty"] move container to workspace $ws1; workspace 1
 for_window [class="firefox"] move container to workspace $ws3; workspace 3
+for_window [class="Vivaldi"] move container to workspace $ws3; workspace 3
 for_window [class="Brave"] move container to workspace $ws3; workspace 3
 for_window [class="Tor Browser"] move container to workspace $ws3; workspace 3
 for_window [class="Zathura"] move container to workspace $ws4; workspace 4

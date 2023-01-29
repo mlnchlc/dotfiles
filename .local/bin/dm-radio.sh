@@ -44,16 +44,16 @@ stations["Radio Record Phonk"]="http://radiorecord.hostingradio.ru/phonk96.aacp"
 
 menu() {
   printf '%s\n' "Quit"
-  printf '%s\n' "${!stations[@]}" | sort
+  printf '%s\n' "${!stations[@]}" | shuf
 }
 
 # Functions for sending notification messages
 notify_start() {
-  notify-send "Starting dm-radio" "Playing station: $1. 🎶"
+  dunstify "Starting dm-radio" "Playing station: $1. 🎶"
 }
 
 notify_end() {
-  notify-send "Stopping dm-radio" "You have quit dm-radio. 🎶"
+  dunstify "Stopping dm-radio" "You have quit dm-radio. 🎶"
 }
 
 kill_running_media() {
