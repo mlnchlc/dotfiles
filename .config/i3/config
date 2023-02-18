@@ -1,13 +1,28 @@
-# components--; catpuccin-latte
-set $red_color #D20F39
-set $rosewater_color #dc8a78
-set $green_color #40A02B
-set $yellow_color #DF8E1D
-set $blue_color #1E66F5
-set $lavender_color #7287fd
-set $sapphire_color #209fb5
-set $base #EFF1F5
-set $text #4C4F69
+set $rosewater #dc8a78
+set $flamingo  #dd7878
+set $pink      #ea76cb
+set $mauve     #8839ef
+set $red       #d20f39
+set $maroon    #e64553
+set $peach     #fe640b
+set $green     #40a02b
+set $teal      #179299
+set $sky       #04a5e5
+set $sapphire  #209fb5
+set $blue      #1e66f5
+set $lavender  #7287fd
+set $text      #4c4f69
+set $subtext1  #5c5f77
+set $subtext0  #6c6f85
+set $overlay2  #7c7f93
+set $overlay1  #8c8fa1
+set $overlay0  #9ca0b0
+set $surface2  #acb0be
+set $surface1  #bcc0cc
+set $surface0  #ccd0da
+set $base      #eff1f5
+set $mantle    #e6e9ef
+set $crust     #dce0e8
 
 set $term alacritty
 set $mod Mod4
@@ -18,7 +33,6 @@ exec --no-startup-id picom
 exec --no-startup-id dunst
 exec --no-startup-id xrandr --output HDMI-A-0 --right-of eDP
 exec --no-startup-id xss-lock -- $locker 
-# exec xautolock -time 10 -locker "i3lock -ef -c a89984 --nofork && sleep 1"
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # Use pactl to adjust volume in PulseAudio.
@@ -223,11 +237,13 @@ bar {
 }
 
 # Colors
-# class         title-border  backgr.   text    indicator   child_border
-client.focused  $lavender_color $rosewater_color $base $gray_color
-client.focused_inactive	$bg1_color $bg1_color  $text 
-client.unfocused $gray_color $gray_color $text
-client.urgent		$red_color $red_color  $text 
+# target                 title     bg    text   indicator  border
+client.focused           $pink     $base $text  $rosewater $pink
+client.focused_inactive  $mauve    $base $text  $rosewater $mauve
+client.unfocused         $mauve    $base $text  $rosewater $mauve
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 # --- gaps ------------------------------------------------------------------
 #gaps inner 3

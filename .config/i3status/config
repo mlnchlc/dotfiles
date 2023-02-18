@@ -27,7 +27,7 @@ battery 0 {
 }
 
 time {
-		format = " %b %d, %H:%M"
+		format = "  %a, %b %d, %H:%M"
 }
 
 cpu_temperature 0 {
