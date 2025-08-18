@@ -2,3 +2,23 @@
 **/iterm2/
 **/mps-youtube/
 **/.DS_Store
+
+# Ignore the LazyVim plugin directory and its contents
+**/lazy/
+**/lazy/**/*
+
+# Ignore the LazyVim lock file
+**/lazy-lock.json
+
+# Ignore the Neovim configuration's .git directory and its contents
+**/.git/
+**/.git/**/*
+
+# Optionally, ignore the Neovim configuration's .gitignore file if it's not meant to be managed by chezmoi
+**/.gitignore
+
+# But do not ignore the user's own .gitignore file if it's part of the configuration
+!.config/nvim/.gitignore
+
+# Ignore specific backup or history files
+**/yankring_history*.txt
