@@ -43,8 +43,8 @@ window-padding-y = 20
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 # theme=mellow
-theme=Github Dark
-# background-opacity = 0.9
+theme=catppuccin-latte
+background-opacity = 0.9
 background-blur = true
 macos-icon = glass
 auto-update = download
